@@ -20,6 +20,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("chessboard.fxml"));
+        primaryStage.resizableProperty().setValue(false);
         primaryStage.setTitle("Dank Chess");
 
         Stage settingsPopup = new Stage();
