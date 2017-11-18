@@ -25,7 +25,7 @@ public class Main extends Application {
 
         Stage settingsPopup = new Stage();
 
-        VBox choices = new VBox();
+        VBox choices = new VBox(5);
         choices.setAlignment(Pos.CENTER_LEFT);
         ToggleGroup toggleGroup = new ToggleGroup();
         RadioButton sml = new RadioButton("8x8 Tiled Board");
