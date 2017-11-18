@@ -1,3 +1,5 @@
+#This gitignore file should be universal for all devs on this project.
+
 # Compiled class file
 *.class
 
