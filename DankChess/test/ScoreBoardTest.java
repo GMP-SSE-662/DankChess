@@ -21,9 +21,12 @@ public class ScoreBoardTest
 
     @BeforeEach
     public void beforeEachTest() {
-        testPlayer = new Player(new ArrayList<ChessPiece>() {{
-            add(new Pawn()); add(new Knight()); add(new Queen());
-        }});
+        testPlayer = new Player();
+        testPlayer.takePiece(new Rook());
+        testPlayer.takePiece(new Pawn());
+        testPlayer.takePiece(new Pawn());
+        testPlayer.takePiece(new Knight());
+        testPlayer.takePiece(new Queen());
         testScoreboard = new Scoreboard(testPlayer);
     }
 
@@ -36,18 +39,12 @@ public class ScoreBoardTest
     @Test
     public void playerScoreboardTest() {
         Scoreboard testScoreboard = new Scoreboard(testPlayer);
-        assertEquals(testPlayer.getPlayerPieces(), testScoreboard.getObservedPieces());
+        assertEquals(testPlayer.getTakenPieces(), testScoreboard.getObservedPieces());
     }
 
     @Test
-    public void testPlayerPieceAddition() {
-        testPlayer.addPiece(new Rook());
-        assertEquals(testPlayer.getPlayerPieces(), testScoreboard.getObservedPieces());
-    }
-
-    @Test
-    public void testPlayerPieceRemoval() {
-        testPlayer.removePiece(testPlayer.getPlayerPieces().get(0));
-        assertEquals(testPlayer.getPlayerPieces(), testScoreboard.getObservedPieces());
+    public void testPlayerAttack() {
+        testPlayer.takePiece(new Rook());
+        assertEquals(testPlayer.getTakenPieces(), testScoreboard.getObservedPieces());
     }
 }

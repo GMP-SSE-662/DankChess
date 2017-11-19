@@ -7,7 +7,8 @@ import javafx.scene.image.Image;
 import java.util.ArrayList;
 
 public abstract class ChessPiece implements Drawable {
-    private Image sprite;
+    private Image boardSprite;
+    private Image scoreboardSprite;
     private Location location;
     private PieceColor pieceColor;
 
@@ -22,6 +23,11 @@ public abstract class ChessPiece implements Drawable {
     public abstract ArrayList<Location> getValidMoves();
 
     public void draw(GraphicsContext gc) {
-        gc.drawImage(sprite, location.getRow() * Constants.tileSize, location.getColumn() * Constants.tileSize);
+        gc.drawImage(boardSprite, location.getRow() * Constants.tileSize, location.getColumn() * Constants.tileSize);
+    }
+
+    public void drawOnScoreboard(GraphicsContext gc, int horizontalIndex, int verticalIndex) {
+        gc.drawImage(scoreboardSprite, horizontalIndex * Constants.scoreboardPieceSize,
+                verticalIndex * Constants.scoreboardPieceSize);
     }
 }

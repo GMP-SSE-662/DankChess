@@ -6,22 +6,25 @@ import java.util.Observable;
 public class Player extends Observable {
 
     private ArrayList<ChessPiece> playerPieces;
+    private ArrayList<ChessPiece> takenPieces;
 
     public Player() {
         playerPieces = new ArrayList<>();
+        takenPieces = new ArrayList<>();
     }
 
     public Player(ArrayList<ChessPiece> playerPieces) {
         this.playerPieces = playerPieces;
+        takenPieces = new ArrayList<>();
     }
 
-    public void addPiece(ChessPiece piece) {
+    public void addPlayerPiece(ChessPiece piece) {
         playerPieces.add(piece);
         setChanged();
         notifyObservers();
     }
 
-    public void removePiece(ChessPiece piece) {
+    public void removePlayerPiece(ChessPiece piece) {
         playerPieces.remove(piece);
         setChanged();
         notifyObservers();
@@ -29,5 +32,13 @@ public class Player extends Observable {
 
     public ArrayList<ChessPiece> getPlayerPieces() {
         return playerPieces;
+    }
+
+    public void takePiece(ChessPiece piece) {
+        takenPieces.add(piece);
+    }
+
+    public ArrayList<ChessPiece> getTakenPieces() {
+        return takenPieces;
     }
 }
