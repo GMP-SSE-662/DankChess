@@ -16,6 +16,14 @@ public class Tile implements Drawable {
     }
 
     /**
+     * Gets the location of the tile.
+     * @return the tile location.
+     */
+    public Location getLocation() {
+        return location;
+    }
+
+    /**
      * Draws the tile.
      * @param context the current canvas graphics context.
      */
