@@ -11,12 +11,6 @@ import java.util.ArrayList;
 public abstract class GamePiece implements Drawable {
     private PieceColor pieceColor;
     private Location location;
-    Constants.PlayerName owner;
-
-    public GamePiece(Constants.PlayerName owner, int row, int column){
-        this.location = new Location(row, column);
-        this.owner = owner;
-    }
 
     public PieceColor getPieceColor() {
         return pieceColor;
