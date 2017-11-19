@@ -10,6 +10,10 @@ public class Tile implements Drawable {
     private Location location;
     private Color color;
 
+    public Tile(int row, int column){
+        location = new Location(row, column);
+    }
+
     @Override
     public void draw(GraphicsContext context) {
         context.setFill(color);

@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -61,6 +63,10 @@ public class Main extends Application {
         settingsPopup.setScene(popupScene);
         settingsPopup.resizableProperty().setValue(false);
         settingsPopup.show();
+
+        //TODO: Add canvas to primary stage, draw board and tiles on canvas
+        Canvas canvas = new Canvas(primaryStage.getWidth(), primaryStage.getHeight());
+
     }
 
     public static void main(String[] args) {
