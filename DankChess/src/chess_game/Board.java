@@ -9,6 +9,8 @@ import javafx.scene.canvas.GraphicsContext;
 import java.util.ArrayList;
 
 public class Board extends Canvas {
+    ArrayList<GamePiece> lightPlayer;
+    ArrayList<GamePiece> darkPlayer;
     ArrayList<GamePiece> pieces;
     ArrayList<Location> pieceLocations;
     ArrayList<Tile> tiles;
@@ -24,6 +26,18 @@ public class Board extends Canvas {
                 tiles.add(new Tile(i, j));
             }
         }
+        initializePlayers();
+    }
+
+    private void initializePlayers() {
+        lightPlayer = new ArrayList<>();
+        darkPlayer = new ArrayList<>();
+        LightPieceFactory lpf = new LightPieceFactory();
+        DarkPieceFactory dpf = new DarkPieceFactory();
+        for (int i = 0; i < boardSize; i++) {
+            lightPlayer.add(lpf.createPawn(new Location(boardSize - 2, i)));
+            darkPlayer.add(dpf.createPawn(new Location(1, i)));
+        }
     }
 
     public ArrayList<Location> getPieceLocations() {
@@ -36,8 +50,14 @@ public class Board extends Canvas {
 
     public void draw() {
         GraphicsContext context = this.getGraphicsContext2D();
-        for(Tile tile : tiles) {
+        for (Tile tile : tiles) {
             tile.draw(context);
+        }
+        for (GamePiece gp : lightPlayer) {
+            gp.draw(context);
+        }
+        for (GamePiece gp : darkPlayer) {
+            gp.draw(context);
         }
     }
 }
