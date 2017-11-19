@@ -1,5 +1,6 @@
 package chess_game;
 
+import chess_game.colors.PieceColor;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -7,8 +8,8 @@ import java.util.ArrayList;
 
 public abstract class ChessPiece implements Drawable {
     private Image sprite;
-
     private Location location;
+    private PieceColor pieceColor;
 
     public Location getLocation(){
         return location;
