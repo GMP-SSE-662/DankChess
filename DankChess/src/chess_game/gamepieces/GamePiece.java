@@ -37,7 +37,7 @@ public abstract class GamePiece implements Drawable {
     public abstract String getBoardSprite();
 
     public void draw(GraphicsContext gc) {
-        gc.strokeText(getBoardSprite(), getLocation().getRow() * Constants.TILE_SIZE,
-                (getLocation().getColumn() + 1) * Constants.TILE_SIZE, Constants.TILE_SIZE);
+        gc.strokeText(getBoardSprite(), getLocation().getRow() * Constants.TILE_SIZE + Constants.TILE_SIZE / 3,
+                (getLocation().getColumn() + 1) * Constants.TILE_SIZE - Constants.TILE_SIZE / 3, Constants.TILE_SIZE / 3);
     }
 }
