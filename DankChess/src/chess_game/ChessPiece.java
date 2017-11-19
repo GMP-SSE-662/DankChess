@@ -1,6 +1,7 @@
 package chess_game;
 
 import chess_game.colors.PieceColor;
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -11,6 +12,12 @@ public abstract class ChessPiece implements Drawable {
     private Image scoreboardSprite;
     private Location location;
     private PieceColor pieceColor;
+    Constants.PlayerName owner;
+
+    public ChessPiece(Constants.PlayerName owner, int row, int column){
+        this.location = new Location(row, column);
+        this.owner = owner;
+    }
 
     public Location getLocation(){
         return location;
@@ -18,6 +25,10 @@ public abstract class ChessPiece implements Drawable {
 
     public void setLocation(int row, int column){
         location = new Location(row, column);
+    }
+
+    public void setBoardSprite(Image image){
+        this.boardSprite = image;
     }
 
     public abstract ArrayList<Location> getValidMoves();

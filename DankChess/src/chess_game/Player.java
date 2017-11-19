@@ -7,10 +7,12 @@ public class Player extends Observable {
 
     private ArrayList<ChessPiece> playerPieces;
     private ArrayList<ChessPiece> takenPieces;
+    Constants.PlayerName name;
 
-    public Player() {
+    public Player(Constants.PlayerName name) {
         playerPieces = new ArrayList<>();
         takenPieces = new ArrayList<>();
+        this.name = name;
     }
 
     public Player(ArrayList<ChessPiece> playerPieces) {

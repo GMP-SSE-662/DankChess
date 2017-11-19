@@ -6,4 +6,8 @@ public final class Constants {
     public static final int scoreboardPieceSize = 36;
     public static final int smallBoardSize = 360;
     public static final int largeBoardSize = 720;
+
+    public enum PlayerName{
+        PLAYER1, PLAYER2
+    }
 }
