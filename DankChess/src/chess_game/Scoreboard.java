@@ -13,7 +13,7 @@ public class Scoreboard extends Canvas implements Observer {
     private ArrayList<ChessPiece> observedPieces;
 
     public Scoreboard(Observable obs, int desiredBoardSize) {
-        super(Constants.scoreboardWidth, desiredBoardSize);
+        super(Constants.scoreboardWidth, desiredBoardSize / 2);
         observable = obs;
         observable.addObserver(this);
         if (obs instanceof Player) {
