@@ -1,6 +1,5 @@
 package chess_game;
 
-import chess_game.powerups.Drawable;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 

@@ -1,12 +1,9 @@
-package view;
+package chess_game;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
+import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -17,15 +14,15 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    static boolean isNormalBoard;
-
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("chessboard.fxml"));
-        primaryStage.resizableProperty().setValue(false);
+        Group root = new Group();
         primaryStage.setTitle("Dank Chess");
+        primaryStage.resizableProperty().setValue(false);
 
         Stage settingsPopup = new Stage();
+        settingsPopup.setTitle("Board Settings");
+        settingsPopup.resizableProperty().setValue(false);
 
         VBox choices = new VBox(5);
         choices.setAlignment(Pos.CENTER_LEFT);
@@ -41,14 +38,11 @@ public class Main extends Application {
         confirmContainer.setAlignment(Pos.CENTER);
         Button confirmButton = new Button("Confirm");
         confirmButton.setOnAction(e -> {
-            if (toggleGroup.getSelectedToggle().equals(sml)) {
-                isNormalBoard = true;
-                primaryStage.setScene(new Scene(root, 640, 360));
-            } else {
-                isNormalBoard = false;
-                primaryStage.setScene(new Scene(root, 900, 720));
-            }
+            int boardSize = getBoardSize(toggleGroup.getSelectedToggle().equals(sml));
             settingsPopup.close();
+            root.getChildren().add(new Board(boardSize));
+            primaryStage.setScene(new Scene(root, boardSize + Constants.scoreboardWidth, boardSize));
+            primaryStage.sizeToScene();
             primaryStage.show();
         });
         confirmContainer.getChildren().add(confirmButton);
@@ -59,14 +53,12 @@ public class Main extends Application {
         popupLayout.setBottom(confirmContainer);
         Scene popupScene = new Scene(popupLayout, 250, 80);
 
-        settingsPopup.setTitle("Board Settings");
         settingsPopup.setScene(popupScene);
-        settingsPopup.resizableProperty().setValue(false);
         settingsPopup.show();
+    }
 
-        //TODO: Add canvas to primary stage, draw board and tiles on canvas
-        Canvas canvas = new Canvas(primaryStage.getWidth(), primaryStage.getHeight());
-
+    private int getBoardSize(boolean isSmallBoard) {
+        return isSmallBoard ? Constants.smallBoardSize : Constants.largeBoardSize;
     }
 
     public static void main(String[] args) {

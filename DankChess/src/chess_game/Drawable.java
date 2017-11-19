@@ -1,4 +1,4 @@
-package chess_game.powerups;
+package chess_game;
 
 import javafx.scene.canvas.GraphicsContext;
 
