@@ -4,16 +4,30 @@ public class Location {
     private int row;
     private int column;
 
-    public Location(int row, int column) {
-        this.row = row;
+    /**
+     * Creates a location object.
+     * @param column factor of x-value.
+     * @param row factor of y-value.
+     */
+    public Location(int column, int row) {
         this.column = column;
+        this.row = row;
     }
 
+    /**
+     * Gets the column of the location.
+     * @return factor of x-value, column.
+     */
+    public int getColumn() {
+        return column;
+    }
+
+    /**
+     * Gets the row of the location.
+     * @return factor of y-value, row.
+     */
     public int getRow() {
         return row;
     }
 
-    public int getColumn() {
-        return column;
-    }
 }
