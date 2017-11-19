@@ -1,5 +1,7 @@
 package chess_game;
 
+import chess_game.factories.DarkPieceFactory;
+import chess_game.factories.LightPieceFactory;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -23,8 +25,8 @@ public class Board extends Canvas {
                 tiles.add(new Tile(i, j));
             }
         }
-        lightPlayer = new Player();
-        darkPlayer = new Player();
+        lightPlayer = new Player(new LightPieceFactory());
+        darkPlayer = new Player(new DarkPieceFactory());
     }
 
     public ArrayList<Location> getPieceLocations() {
@@ -43,7 +45,8 @@ public class Board extends Canvas {
         return darkPlayer;
     }
 
-    public void draw(GraphicsContext context) {
+    public void draw() {
+        GraphicsContext context = this.getGraphicsContext2D();
         for(Tile tile : tiles) {
             tile.draw(context);
         }
