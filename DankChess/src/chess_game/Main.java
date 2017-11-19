@@ -46,7 +46,16 @@ public class Main extends Application {
             settingsPopup.close();
             mainBoard = new Board(boardSize);
             mainBoard.draw(mainBoard.getGraphicsContext2D());
-            root.getChildren().add(mainBoard);
+            VBox scoreboards = new VBox();
+            lightScoreboard = new Scoreboard(mainBoard.getLightPlayer(), boardSize);
+            lightScoreboard.drawScore(lightScoreboard.getGraphicsContext2D());
+            darkScoreboard = new Scoreboard(mainBoard.getDarkPlayer(), boardSize);
+            darkScoreboard.drawScore(darkScoreboard.getGraphicsContext2D());
+            scoreboards.getChildren().addAll(darkScoreboard, lightScoreboard);
+            BorderPane window = new BorderPane();
+            window.setCenter(mainBoard);
+            window.setRight(scoreboards);
+            root.getChildren().add(window);
             primaryStage.setScene(new Scene(root, boardSize + Constants.scoreboardWidth, boardSize));
             primaryStage.sizeToScene();
             primaryStage.show();

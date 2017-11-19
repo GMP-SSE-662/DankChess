@@ -23,6 +23,8 @@ public class Board extends Canvas {
                 tiles.add(new Tile(i, j));
             }
         }
+        lightPlayer = new Player();
+        darkPlayer = new Player();
     }
 
     public ArrayList<Location> getPieceLocations() {
@@ -33,7 +35,12 @@ public class Board extends Canvas {
         return pieceLocations;
     }
 
-    public void initializePlayer(Player player) {
+    public Player getLightPlayer() {
+        return lightPlayer;
+    }
+
+    public Player getDarkPlayer() {
+        return darkPlayer;
     }
 
     public void draw(GraphicsContext context) {
