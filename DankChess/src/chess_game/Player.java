@@ -5,7 +5,7 @@ import java.util.Observable;
 
 public class Player extends Observable {
 
-    ArrayList<ChessPiece> playerPieces;
+    private ArrayList<ChessPiece> playerPieces;
 
     public Player() {
         playerPieces = new ArrayList<>();
@@ -25,5 +25,9 @@ public class Player extends Observable {
         playerPieces.remove(piece);
         setChanged();
         notifyObservers();
+    }
+
+    public ArrayList<ChessPiece> getPlayerPieces() {
+        return playerPieces;
     }
 }

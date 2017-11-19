@@ -21,7 +21,7 @@ public abstract class ChessPiece implements Drawable {
 
     public abstract ArrayList<Location> getValidMoves();
 
-    public void draw(GraphicsContext gc){
+    public void draw(GraphicsContext gc) {
         gc.drawImage(sprite, location.getRow() * Constants.tileSize, location.getColumn() * Constants.tileSize);
     }
 }
