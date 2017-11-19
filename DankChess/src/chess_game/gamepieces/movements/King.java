@@ -29,7 +29,14 @@ public class King extends MovementPiece {
     public ArrayList<Location> getValidMoves() {
         ArrayList<Location> validMoves = gamePiece.getValidMoves();
 
-        //TODO: Implement appropriate move abilities.
+        validMoves.add(new Location(getLocation().getRow() + 1, getLocation().getColumn()));
+        validMoves.add(new Location(getLocation().getRow() - 1, getLocation().getColumn()));
+        validMoves.add(new Location(getLocation().getRow(), getLocation().getColumn() + 1));
+        validMoves.add(new Location(getLocation().getRow(), getLocation().getColumn() - 1));
+        validMoves.add(new Location(getLocation().getRow() + 1, getLocation().getColumn() + 1));
+        validMoves.add(new Location(getLocation().getRow() + 1, getLocation().getColumn() - 1));
+        validMoves.add(new Location(getLocation().getRow() - 1, getLocation().getColumn() + 1));
+        validMoves.add(new Location(getLocation().getRow() - 1, getLocation().getColumn() - 1));
 
         return validMoves;
     }

@@ -29,7 +29,16 @@ public class Queen extends MovementPiece {
     public ArrayList<Location> getValidMoves() {
         ArrayList<Location> validMoves = gamePiece.getValidMoves();
 
-        //TODO: Implement appropriate move abilities.
+        for (int i = 1; i <= 16; i++) {
+            validMoves.add(new Location(getLocation().getRow() + i, getLocation().getColumn()));
+            validMoves.add(new Location(getLocation().getRow() - i, getLocation().getColumn()));
+            validMoves.add(new Location(getLocation().getRow(), getLocation().getColumn() + i));
+            validMoves.add(new Location(getLocation().getRow(), getLocation().getColumn() - i));
+            validMoves.add(new Location(getLocation().getRow() + i, getLocation().getColumn() + i));
+            validMoves.add(new Location(getLocation().getRow() + i, getLocation().getColumn() - i));
+            validMoves.add(new Location(getLocation().getRow() - i, getLocation().getColumn() + i));
+            validMoves.add(new Location(getLocation().getRow() - i, getLocation().getColumn() - i));
+        }
 
         return validMoves;
     }
