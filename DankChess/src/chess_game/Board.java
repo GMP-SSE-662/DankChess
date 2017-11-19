@@ -23,16 +23,13 @@ public class Board extends Canvas {
                 tiles.add(new Tile(i, j));
             }
         }
-        draw(this.getGraphicsContext2D());
     }
 
     public ArrayList<Location> getPieceLocations() {
         pieceLocations = new ArrayList<>();
-
         for(ChessPiece piece : pieces) {
             pieceLocations.add(piece.getLocation());
         }
-
         return pieceLocations;
     }
 

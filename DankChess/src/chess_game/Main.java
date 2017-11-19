@@ -14,6 +14,10 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    Board mainBoard;
+    Scoreboard lightScoreboard;
+    Scoreboard darkScoreboard;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         Group root = new Group();
@@ -40,7 +44,9 @@ public class Main extends Application {
         confirmButton.setOnAction(e -> {
             int boardSize = getBoardSize(toggleGroup.getSelectedToggle().equals(sml));
             settingsPopup.close();
-            root.getChildren().add(new Board(boardSize));
+            mainBoard = new Board(boardSize);
+            mainBoard.draw(mainBoard.getGraphicsContext2D());
+            root.getChildren().add(mainBoard);
             primaryStage.setScene(new Scene(root, boardSize + Constants.scoreboardWidth, boardSize));
             primaryStage.sizeToScene();
             primaryStage.show();

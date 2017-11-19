@@ -20,7 +20,6 @@ public class Scoreboard extends Canvas implements Observer {
             Player player = (Player)obs;
             observedPieces = player.getTakenPieces();
         }
-        drawScore(this.getGraphicsContext2D());
     }
 
     public ArrayList<ChessPiece> getObservedPieces() {
@@ -49,6 +48,5 @@ public class Scoreboard extends Canvas implements Observer {
                 }
             });
         }
-        drawScore(this.getGraphicsContext2D());
     }
 }

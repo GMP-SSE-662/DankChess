@@ -1,10 +1,12 @@
 import chess_game.ChessPiece;
+import chess_game.Constants;
 import chess_game.Player;
 import chess_game.Scoreboard;
 import chess_game.pieces.Knight;
 import chess_game.pieces.Pawn;
 import chess_game.pieces.Queen;
 import chess_game.pieces.Rook;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,8 +16,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class ScoreBoardTest
+public class ScoreboardTest
 {
+    final int testBoardSize = Constants.smallBoardSize;
+
     Player testPlayer;
     Scoreboard testScoreboard;
 
@@ -27,18 +31,18 @@ public class ScoreBoardTest
         testPlayer.takePiece(new Pawn());
         testPlayer.takePiece(new Knight());
         testPlayer.takePiece(new Queen());
-        testScoreboard = new Scoreboard(testPlayer);
+        testScoreboard = new Scoreboard(testPlayer, testBoardSize);
     }
 
     @Test
     public void newScoreboardTest() {
-        Scoreboard testScoreboard = new Scoreboard(new Player());
+        testScoreboard = new Scoreboard(new Player(), testBoardSize);
         assertNotNull(testScoreboard);
     }
 
     @Test
     public void playerScoreboardTest() {
-        Scoreboard testScoreboard = new Scoreboard(testPlayer);
+        testScoreboard = new Scoreboard(testPlayer, testBoardSize);
         assertEquals(testPlayer.getTakenPieces(), testScoreboard.getObservedPieces());
     }
 
