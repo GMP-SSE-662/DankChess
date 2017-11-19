@@ -48,9 +48,9 @@ public class Main extends Application {
             mainBoard.draw();
             VBox scoreboards = new VBox();
             lightScoreboard = new Scoreboard(mainBoard.getLightPlayer(), boardSize);
-            lightScoreboard.drawScore();
+            lightScoreboard.drawInitialScoreboard();
             darkScoreboard = new Scoreboard(mainBoard.getDarkPlayer(), boardSize);
-            darkScoreboard.drawScore();
+            darkScoreboard.drawInitialScoreboard();
             scoreboards.getChildren().addAll(darkScoreboard, lightScoreboard);
             BorderPane window = new BorderPane();
             window.setCenter(mainBoard);

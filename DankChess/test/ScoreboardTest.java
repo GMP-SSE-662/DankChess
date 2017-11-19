@@ -25,7 +25,7 @@ public class ScoreboardTest
 
     @BeforeEach
     public void beforeEachTest() {
-        testPlayer = new Player();
+        testPlayer = new Player(null);
         testPlayer.takePiece(new Rook());
         testPlayer.takePiece(new Pawn());
         testPlayer.takePiece(new Pawn());
@@ -36,7 +36,7 @@ public class ScoreboardTest
 
     @Test
     public void newScoreboardTest() {
-        testScoreboard = new Scoreboard(new Player(), testBoardSize);
+        testScoreboard = new Scoreboard(new Player(null), testBoardSize);
         assertNotNull(testScoreboard);
     }
 
