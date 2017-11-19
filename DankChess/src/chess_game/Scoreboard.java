@@ -31,7 +31,7 @@ public class Scoreboard extends Canvas implements Observer {
         int horizontal = 0, vertical = 0;
         for (ChessPiece piece : observedPieces) {
             piece.drawOnScoreboard(context, horizontal, vertical);
-            if (horizontal >= 5) {
+            if (++horizontal >= 5) {
                 horizontal = 0;
                 vertical++;
             }
