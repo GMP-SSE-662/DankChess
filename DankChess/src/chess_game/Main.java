@@ -45,12 +45,12 @@ public class Main extends Application {
             int boardSize = getBoardSize(toggleGroup.getSelectedToggle().equals(sml));
             settingsPopup.close();
             mainBoard = new Board(boardSize);
-            mainBoard.draw(mainBoard.getGraphicsContext2D());
+            mainBoard.draw();
             VBox scoreboards = new VBox();
             lightScoreboard = new Scoreboard(mainBoard.getLightPlayer(), boardSize);
-            lightScoreboard.drawScore(lightScoreboard.getGraphicsContext2D());
+            lightScoreboard.drawScore();
             darkScoreboard = new Scoreboard(mainBoard.getDarkPlayer(), boardSize);
-            darkScoreboard.drawScore(darkScoreboard.getGraphicsContext2D());
+            darkScoreboard.drawScore();
             scoreboards.getChildren().addAll(darkScoreboard, lightScoreboard);
             BorderPane window = new BorderPane();
             window.setCenter(mainBoard);

@@ -43,7 +43,8 @@ public class Board extends Canvas {
         return darkPlayer;
     }
 
-    public void draw(GraphicsContext context) {
+    public void draw() {
+        GraphicsContext context = this.getGraphicsContext2D();
         for(Tile tile : tiles) {
             tile.draw(context);
         }
