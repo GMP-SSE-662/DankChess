@@ -15,8 +15,6 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     Board mainBoard;
-    Scoreboard lightScoreboard;
-    Scoreboard darkScoreboard;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -44,19 +42,12 @@ public class Main extends Application {
         confirmButton.setOnAction(e -> {
             int boardSize = getBoardSize(toggleGroup.getSelectedToggle().equals(sml));
             settingsPopup.close();
+            BorderPane window = new BorderPane();
             mainBoard = new Board(boardSize);
             mainBoard.draw();
-            VBox scoreboards = new VBox();
-            lightScoreboard = new Scoreboard(mainBoard.getLightPlayer(), boardSize);
-            lightScoreboard.drawInitialScoreboard();
-            darkScoreboard = new Scoreboard(mainBoard.getDarkPlayer(), boardSize);
-            darkScoreboard.drawInitialScoreboard();
-            scoreboards.getChildren().addAll(darkScoreboard, lightScoreboard);
-            BorderPane window = new BorderPane();
             window.setCenter(mainBoard);
-            window.setRight(scoreboards);
             root.getChildren().add(window);
-            primaryStage.setScene(new Scene(root, boardSize + Constants.scoreboardWidth, boardSize));
+            primaryStage.setScene(new Scene(root, boardSize, boardSize));
             primaryStage.sizeToScene();
             primaryStage.show();
         });
@@ -73,7 +64,7 @@ public class Main extends Application {
     }
 
     private int getBoardSize(boolean isSmallBoard) {
-        return isSmallBoard ? Constants.smallBoardSize : Constants.largeBoardSize;
+        return isSmallBoard ? Constants.SMALL_BOARD_SIZE : Constants.LARGE_BOARD_SIZE;
     }
 
     public static void main(String[] args) {

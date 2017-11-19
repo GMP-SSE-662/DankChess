@@ -1,36 +1,47 @@
 package chess_game.factories;
 
-import chess_game.pieces.*;
+import chess_game.Location;
+import chess_game.gamepieces.BaseChessPiece;
+import chess_game.gamepieces.GamePiece;
+import chess_game.colors.LightColor;
+import chess_game.gamepieces.movements.*;
 
 public class LightPieceFactory implements ChessPieceFactory {
 
     @Override
-    public Pawn createPawn() {
-        return null;
+    public GamePiece createPawn(Location location) {
+        return new Pawn(createLightPiece(location));
     }
 
     @Override
-    public Rook createRook() {
-        return null;
+    public GamePiece createRook(Location location) {
+        return new Rook(createLightPiece(location));
     }
 
     @Override
-    public Knight createKnight() {
-        return null;
+    public GamePiece createKnight(Location location) {
+        return new Knight(createLightPiece(location));
     }
 
     @Override
-    public Bishop createBishop() {
-        return null;
+    public GamePiece createBishop(Location location) {
+        return new Bishop(createLightPiece(location));
     }
 
     @Override
-    public Queen createQueen() {
-        return null;
+    public GamePiece createQueen(Location location) {
+        return new Queen(createLightPiece(location));
     }
 
     @Override
-    public King createKing() {
-        return null;
+    public GamePiece createKing(Location location) {
+        return new King(createLightPiece(location));
+    }
+
+    private GamePiece createLightPiece(Location location) {
+        GamePiece piece = new BaseChessPiece();
+        piece.setPieceColor(new LightColor());
+        piece.setLocation(location);
+        return piece;
     }
 }

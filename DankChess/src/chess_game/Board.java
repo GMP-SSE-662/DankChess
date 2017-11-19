@@ -2,6 +2,7 @@ package chess_game;
 
 import chess_game.factories.DarkPieceFactory;
 import chess_game.factories.LightPieceFactory;
+import chess_game.gamepieces.GamePiece;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 public class Board extends Canvas {
     Player lightPlayer;
     Player darkPlayer;
-    ArrayList<ChessPiece> pieces;
+    ArrayList<GamePiece> pieces;
     ArrayList<Location> pieceLocations;
     ArrayList<Tile> tiles;
 
@@ -18,7 +19,7 @@ public class Board extends Canvas {
 
     public Board(int desiredBoardSize) {
         super(desiredBoardSize, desiredBoardSize);
-        boardSize = desiredBoardSize / Constants.tileSize;
+        boardSize = desiredBoardSize / Constants.TILE_SIZE;
         tiles = new ArrayList<>();
         for (int i = 0; i < boardSize; i++) {
             for (int j = 0; j < boardSize; j++) {
@@ -31,7 +32,7 @@ public class Board extends Canvas {
 
     public ArrayList<Location> getPieceLocations() {
         pieceLocations = new ArrayList<>();
-        for(ChessPiece piece : pieces) {
+        for(GamePiece piece : pieces) {
             pieceLocations.add(piece.getLocation());
         }
         return pieceLocations;

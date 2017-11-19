@@ -3,15 +3,14 @@ package chess_game;
 import chess_game.factories.ChessPieceFactory;
 import chess_game.factories.DarkPieceFactory;
 import chess_game.factories.LightPieceFactory;
+import chess_game.gamepieces.GamePiece;
 
 import java.util.ArrayList;
-import java.util.Observable;
 
-public class Player extends Observable {
-
+public class Player {
     private ChessPieceFactory pieceFactory;
-    private ArrayList<ChessPiece> playerPieces;
-    private ArrayList<ChessPiece> takenPieces;
+    private ArrayList<GamePiece> playerPieces;
+    private ArrayList<GamePiece> takenPieces;
 
     public Player(ChessPieceFactory pieceFactory) {
         this.pieceFactory = pieceFactory;
@@ -19,44 +18,40 @@ public class Player extends Observable {
         takenPieces = new ArrayList<>();
     }
 
-    public Player(ChessPieceFactory pieceFactory, ArrayList<ChessPiece> playerPieces) {
+    public Player(ChessPieceFactory pieceFactory, ArrayList<GamePiece> playerPieces) {
         this.pieceFactory = pieceFactory;
         this.playerPieces = playerPieces;
         takenPieces = new ArrayList<>();
     }
 
-    public void addPlayerPiece(ChessPiece piece) {
+    public void addPlayerPiece(GamePiece piece) {
         playerPieces.add(piece);
-        setChanged();
-        notifyObservers();
     }
 
-    public void removePlayerPiece(ChessPiece piece) {
+    public void removePlayerPiece(GamePiece piece) {
         playerPieces.remove(piece);
-        setChanged();
-        notifyObservers();
     }
 
-    public ArrayList<ChessPiece> getPlayerPieces() {
+    public ArrayList<GamePiece> getPlayerPieces() {
         return playerPieces;
     }
 
-    public void takePiece(ChessPiece piece) {
+    public void takePiece(GamePiece piece) {
         takenPieces.add(piece);
     }
 
-    public ArrayList<ChessPiece> getTakenPieces() {
+    public ArrayList<GamePiece> getTakenPieces() {
         return takenPieces;
     }
 
     @Override
     public String toString() {
         if (pieceFactory instanceof DarkPieceFactory) {
-            return "Dark Player";
+            return Constants.DARK_PLAYER_NAME;
         } else if (pieceFactory instanceof LightPieceFactory) {
-            return "Light Player";
+            return Constants.LIGHT_PLAYER_NAME;
         } else {
-            return "ERROR";
+            return Constants.ERROR_STRING;
         }
     }
 }

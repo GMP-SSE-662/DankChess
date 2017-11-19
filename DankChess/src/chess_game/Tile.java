@@ -6,7 +6,12 @@ import javafx.scene.paint.Color;
 public class Tile implements Drawable {
     private Location location;
 
-    public Tile(int row, int column){
+    /**
+     * Creates a new tile at the specified location.
+     * @param row of board.
+     * @param column of board.
+     */
+    public Tile(int row, int column) {
         location = new Location(row, column);
     }
 
@@ -17,8 +22,8 @@ public class Tile implements Drawable {
     @Override
     public void draw(GraphicsContext context) {
         context.setFill(getColor());
-        context.fillRect(location.getRow() * Constants.tileSize, location.getColumn() * Constants.tileSize,
-                Constants.tileSize, Constants.tileSize);
+        context.fillRect(location.getRow() * Constants.TILE_SIZE, location.getColumn() * Constants.TILE_SIZE,
+                Constants.TILE_SIZE, Constants.TILE_SIZE);
     }
 
     /**
@@ -48,8 +53,8 @@ public class Tile implements Drawable {
      * @param context the current canvas graphics context.
      */
     private void drawOutline(GraphicsContext context) {
-        context.strokeRect(location.getRow() * Constants.tileSize + 1, location.getColumn() * Constants.tileSize + 1,
-                Constants.tileSize - 2, Constants.tileSize - 2);
+        context.strokeRect(location.getRow() * Constants.TILE_SIZE + 1, location.getColumn() * Constants.TILE_SIZE + 1,
+                Constants.TILE_SIZE - 2, Constants.TILE_SIZE - 2);
     }
 
     /**
@@ -57,8 +62,8 @@ public class Tile implements Drawable {
      * @param context the current canvas graphics context.
      */
     private void clearTile(GraphicsContext context) {
-        context.clearRect(location.getRow() * Constants.tileSize + 1, location.getColumn() * Constants.tileSize + 1,
-                Constants.tileSize - 2, Constants.tileSize - 2);
+        context.clearRect(location.getRow() * Constants.TILE_SIZE + 1, location.getColumn() * Constants.TILE_SIZE + 1,
+                Constants.TILE_SIZE - 2, Constants.TILE_SIZE - 2);
     }
 
     /**
