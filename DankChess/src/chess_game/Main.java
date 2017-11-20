@@ -15,13 +15,13 @@ public class Main extends Application {
 
         Board mainBoard = new Board();
         mainBoard.draw();
+
         root.getChildren().add(mainBoard);
-        for(int i = 0; i < Constants.TILES_PER_SIDE; i++){
-            for(int j = 0; j < Constants.TILES_PER_SIDE; j++){
+        for(int i = 0; i < mainBoard.boardSize; i++){
+            for(int j = 0; j < mainBoard.boardSize; j++){
                 root.getChildren().add(mainBoard.tiles[i][j]);
             }
         }
-
         primaryStage.setScene(new Scene(root, Constants.BOARD_SIZE, Constants.BOARD_SIZE));
         primaryStage.sizeToScene();
         primaryStage.show();

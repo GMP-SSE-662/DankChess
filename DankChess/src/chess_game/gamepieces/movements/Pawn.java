@@ -2,10 +2,10 @@ package chess_game.gamepieces.movements;
 
 import chess_game.Board;
 import chess_game.Location;
-import chess_game.colors.LightColor;
 import chess_game.colors.PieceColor;
 import chess_game.gamepieces.GamePiece;
 import chess_game.gamepieces.MovementPiece;
+import chess_game.colors.LightColor;
 
 import java.util.ArrayList;
 

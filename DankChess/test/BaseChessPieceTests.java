@@ -3,6 +3,7 @@ import chess_game.colors.DarkColor;
 import chess_game.colors.LightColor;
 import chess_game.gamepieces.BaseChessPiece;
 import chess_game.gamepieces.GamePiece;
+import javafx.scene.effect.Light;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -46,10 +47,10 @@ public class BaseChessPieceTests {
 
     @Test
     public void getSetBaseColorTest() {
-        testPiece.setPieceColor(DarkColor.getDarkPieceColor());
+        testPiece.setPieceColor(new DarkColor());
         assertTrue(testPiece.getPieceColor() instanceof DarkColor);
         assertFalse(testPiece.getPieceColor() instanceof LightColor);
-        testPiece.setPieceColor(LightColor.getLightPieceColor());
+        testPiece.setPieceColor(new LightColor());
         assertTrue(testPiece.getPieceColor() instanceof LightColor);
         assertFalse(testPiece.getPieceColor() instanceof DarkColor);
     }
@@ -62,9 +63,9 @@ public class BaseChessPieceTests {
     @Test
     public void getBaseSpriteTest() {
         assertEquals(testPiece.getBoardSprite(), "ERROR");
-        testPiece.setPieceColor(DarkColor.getDarkPieceColor());
+        testPiece.setPieceColor(new DarkColor());
         assertEquals(testPiece.getBoardSprite(), "d_");
-        testPiece.setPieceColor(LightColor.getLightPieceColor());
+        testPiece.setPieceColor(new LightColor());
         assertEquals(testPiece.getBoardSprite(), "l_");
     }
 }

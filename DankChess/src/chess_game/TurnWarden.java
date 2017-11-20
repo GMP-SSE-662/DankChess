@@ -4,10 +4,19 @@ import java.util.Observable;
 
 public class TurnWarden extends Observable{
     Board board = null;
-    boolean playerOneTurn = true;
+
+    boolean playerOneTurn = false;
 
     public TurnWarden(Board gameBoard){
         board = gameBoard;
+    }
+
+    /**
+     * Gets isPlayerOneTurn
+     * @return boolean isPlayerOneTurn
+     */
+    public boolean getIsPlayerOneTurn() {
+        return playerOneTurn;
     }
 
     /**
@@ -16,6 +25,7 @@ public class TurnWarden extends Observable{
      */
     boolean toggleTurn(){
         setChanged();
+        notifyObservers();
         return playerOneTurn = !playerOneTurn;
     }
 }
