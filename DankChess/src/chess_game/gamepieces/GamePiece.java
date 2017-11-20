@@ -29,10 +29,6 @@ public abstract class GamePiece implements Drawable {
         this.location = location;
     }
 
-    public void setLocation(int column, int row) {
-        location = new Location(column, row);
-    }
-
     public abstract ArrayList<Location> getValidMoves(Board board);
 
     public abstract String getBoardSprite();
