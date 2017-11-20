@@ -38,6 +38,23 @@ public class Board extends Canvas {
             lightPlayer.add(lpf.createPawn(new Location(i, boardSize - 2)));
             darkPlayer.add(dpf.createPawn(new Location(i, 1)));
         }
+        lightPlayer.add(lpf.createRook(new Location(0, boardSize - 1)));
+        lightPlayer.add(lpf.createRook(new Location(boardSize - 1, boardSize - 1)));
+        lightPlayer.add(lpf.createKnight(new Location(1, boardSize - 1)));
+        lightPlayer.add(lpf.createKnight(new Location(boardSize - 2, boardSize - 1)));
+        lightPlayer.add(lpf.createBishop(new Location(2, boardSize - 1)));
+        lightPlayer.add(lpf.createBishop(new Location(boardSize - 3, boardSize - 1)));
+        lightPlayer.add(lpf.createQueen(new Location(3, boardSize - 1)));
+        lightPlayer.add(lpf.createKing(new Location(boardSize - 4, boardSize - 1)));
+        darkPlayer.add(dpf.createRook(new Location(0, 0)));
+        darkPlayer.add(dpf.createRook(new Location(boardSize - 1, 0)));
+        darkPlayer.add(dpf.createKnight(new Location(1, 0)));
+        darkPlayer.add(dpf.createKnight(new Location(boardSize - 2, 0)));
+        darkPlayer.add(dpf.createBishop(new Location(2, 0)));
+        darkPlayer.add(dpf.createBishop(new Location(boardSize - 3, 0)));
+        darkPlayer.add(dpf.createQueen(new Location(3, 0)));
+        darkPlayer.add(dpf.createKing(new Location(boardSize - 4, 0)));
+
     }
 
     public ArrayList<Location> getPieceLocations() {
