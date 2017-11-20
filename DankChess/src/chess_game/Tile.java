@@ -7,7 +7,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class Tile extends Rectangle implements Drawable {
+import java.util.Observable;
+import java.util.Observer;
+
+public class Tile extends Rectangle implements Drawable, Observer{
     private Location location;
     public GamePiece piece = null;
     public Board board;
@@ -122,5 +125,14 @@ public class Tile extends Rectangle implements Drawable {
                 return Color.WHITESMOKE;
             }
         }
+    }
+
+    /**
+     * Updates tile to show which turn it is
+     *
+     */
+    @Override
+    public void update(Observable o, Object arg) {
+
     }
 }
