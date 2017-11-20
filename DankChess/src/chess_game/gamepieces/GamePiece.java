@@ -31,6 +31,34 @@ public abstract class GamePiece implements Drawable {
 
     public abstract ArrayList<Location> getValidMoves(Board board);
 
+    public ArrayList<Location> removeInvalidMoves(ArrayList<Location> potentialMoves, Board board) {
+        ArrayList<Location> validMoves = potentialMoves;
+        Location moveInQuestion;
+        for (int i = 0; i < potentialMoves.size(); i++) {
+            moveInQuestion = potentialMoves.get(i);
+            if(isOffBoard(moveInQuestion)) {
+                validMoves.remove(i);
+                i--;
+                continue;
+            }
+            if(isInvalidCollision(moveInQuestion, board)) {
+                validMoves.remove(i);
+                i--;
+            }
+        }
+        return validMoves;
+    }
+
+    protected boolean isOffBoard(Location move) {
+        return move.getRow() > Constants.TILES_PER_SIDE - 1 || move.getRow() < 0 ||
+                move.getColumn() > Constants.TILES_PER_SIDE - 1 || move.getColumn() < 0;
+    }
+
+    protected boolean isInvalidCollision(Location move, Board board) {
+        return board.tiles[move.getColumn()][move.getRow()].piece != null &&
+                board.tiles[move.getColumn()][move.getRow()].piece.getPieceColor().equals(this.getPieceColor());
+    }
+
     public abstract String getBoardSprite();
 
     public void draw(GraphicsContext gc) {

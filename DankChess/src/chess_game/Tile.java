@@ -9,7 +9,7 @@ import javafx.scene.shape.Rectangle;
 import java.util.Observable;
 import java.util.Observer;
 
-public class Tile extends Rectangle implements Drawable, Observer{
+public class Tile extends Rectangle implements Drawable, Observer {
     private Location location;
     public GamePiece piece = null;
     public Board board;
@@ -29,7 +29,7 @@ public class Tile extends Rectangle implements Drawable, Observer{
         setFill(Color.TRANSPARENT);
 
         this.board = board;
-        setOnMouseClicked(t -> {
+        setOnMouseClicked(e -> {
             if(isHighlighted){
                 moveActivePiece(board);
             } else if (piece != null){

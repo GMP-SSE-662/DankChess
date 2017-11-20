@@ -1,7 +1,6 @@
 package chess_game.gamepieces.movements;
 
 import chess_game.Board;
-import chess_game.Constants;
 import chess_game.Location;
 import chess_game.colors.PieceColor;
 import chess_game.gamepieces.GamePiece;
@@ -30,7 +29,6 @@ public class Knight extends MovementPiece {
     @Override
     public ArrayList<Location> getValidMoves(Board board) {
         ArrayList<Location> validMoves = gamePiece.getValidMoves(board);
-
         validMoves.add(new Location(getLocation().getColumn() + 1, getLocation().getRow() + 2));
         validMoves.add(new Location(getLocation().getColumn() - 1, getLocation().getRow() + 2));
         validMoves.add(new Location(getLocation().getColumn() + 2, getLocation().getRow() + 1));
@@ -39,23 +37,7 @@ public class Knight extends MovementPiece {
         validMoves.add(new Location(getLocation().getColumn() - 1, getLocation().getRow() - 2));
         validMoves.add(new Location(getLocation().getColumn() + 2, getLocation().getRow() - 1));
         validMoves.add(new Location(getLocation().getColumn() - 2, getLocation().getRow() - 1));
-
-        for(int i = 0; i < validMoves.size(); i++){
-            if(validMoves.get(i).getRow() > Constants.TILES_PER_SIDE - 1 || validMoves.get(i).getRow() < 0 ||
-                    validMoves.get(i).getColumn() > Constants.TILES_PER_SIDE - 1 || validMoves.get(i).getColumn() < 0){
-                validMoves.remove(i);
-                i--;
-            }
-        }
-
-        for(int i = 0; i < validMoves.size(); i++){
-            if(board.tiles[validMoves.get(i).getColumn()][validMoves.get(i).getRow()].piece != null &&
-                    board.tiles[validMoves.get(i).getColumn()][validMoves.get(i).getRow()].piece.getPieceColor().equals(this.getPieceColor())){
-                validMoves.remove(i);
-                i--;
-            }
-        }
-
+        validMoves = removeInvalidMoves(validMoves, board);
         return validMoves;
     }
 
