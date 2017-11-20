@@ -57,6 +57,13 @@ public class Board extends Canvas {
         darkPlayer.add(dpf.createQueen(new Location(3, 0)));
         darkPlayer.add(dpf.createKing(new Location(boardSize - 4, 0)));
 
+        for(GamePiece piece: lightPlayer){
+            tiles[piece.getLocation().getColumn()][piece.getLocation().getRow()].piece = piece;
+        }
+
+        for(GamePiece piece: darkPlayer){
+            tiles[piece.getLocation().getColumn()][piece.getLocation().getRow()].piece = piece;
+        }
     }
 
     public void highlightMoves(ArrayList<Location> moves){

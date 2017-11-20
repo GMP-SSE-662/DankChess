@@ -9,7 +9,7 @@ import javafx.scene.shape.Rectangle;
 
 public class Tile extends Rectangle implements Drawable {
     private Location location;
-    GamePiece piece = null;
+    public GamePiece piece = null;
     public Board board;
 
     /**
@@ -54,6 +54,7 @@ public class Tile extends Rectangle implements Drawable {
         context.setFill(getColor());
         context.fillRect(location.getColumn() * Constants.TILE_SIZE, location.getRow() * Constants.TILE_SIZE,
                 Constants.TILE_SIZE, Constants.TILE_SIZE);
+        if(piece != null) piece.draw(context);
     }
 
     /**

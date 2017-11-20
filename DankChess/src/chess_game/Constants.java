@@ -8,4 +8,5 @@ public final class Constants {
     // ints
     public static final int TILE_SIZE = 90;
     public static final int BOARD_SIZE = 720;
+    public static final int TILES_PER_SIDE = BOARD_SIZE / TILE_SIZE;
 }
