@@ -14,7 +14,6 @@ public class Main extends Application {
         primaryStage.resizableProperty().setValue(false);
 
         Board mainBoard = new Board();
-        TurnManager manager = new TurnManager(mainBoard);
         mainBoard.draw();
         root.getChildren().add(mainBoard);
         for(int i = 0; i < mainBoard.boardSize; i++){
