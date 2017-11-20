@@ -16,6 +16,7 @@ public class Board extends Canvas {
     ArrayList<GamePiece> pieces;
     ArrayList<Location> pieceLocations;
     public Tile[][] tiles;
+    TurnWarden warden;
 
     public int boardSize;
 
@@ -23,7 +24,7 @@ public class Board extends Canvas {
         super(Constants.BOARD_SIZE, Constants.BOARD_SIZE);
         boardSize = Constants.BOARD_SIZE / Constants.TILE_SIZE;
         tiles = new Tile[boardSize][boardSize];
-        TurnWarden warden = new TurnWarden(this);
+        warden = new TurnWarden(this);
         for (int i = 0; i < boardSize; i++) {
             for (int j = 0; j < boardSize; j++) {
                 tiles[i][j] = new Tile(i, j, this);
@@ -60,6 +61,7 @@ public class Board extends Canvas {
         darkPlayer.add(dpf.createQueen(new Location(3, 0)));
         darkPlayer.add(dpf.createKing(new Location(boardSize - 4, 0)));
 
+
         for(GamePiece piece: lightPlayer){
             tiles[piece.getLocation().getColumn()][piece.getLocation().getRow()].piece = piece;
         }
@@ -67,6 +69,7 @@ public class Board extends Canvas {
         for(GamePiece piece: darkPlayer){
             tiles[piece.getLocation().getColumn()][piece.getLocation().getRow()].piece = piece;
         }
+
     }
 
     public void highlightMoves(ArrayList<Location> moves){
@@ -79,6 +82,7 @@ public class Board extends Canvas {
         for(Location move: moves){
             tiles[move.getColumn()][move.getRow()].setOutlineMovable(this.getGraphicsContext2D());
         }
+
     }
 
     public ArrayList<Location> getPieceLocations() {
@@ -102,5 +106,9 @@ public class Board extends Canvas {
         for (GamePiece gp : darkPlayer) {
             gp.draw(context);
         }
+    }
+
+    public void nextTurn(){
+        warden.toggleTurn();
     }
 }
