@@ -29,16 +29,22 @@ public class King extends MovementPiece {
     @Override
     public ArrayList<Location> getValidMoves(Board board) {
         ArrayList<Location> validMoves = gamePiece.getValidMoves(board);
-
-        validMoves.add(new Location(getLocation().getColumn() + 1, getLocation().getRow()));
-        validMoves.add(new Location(getLocation().getColumn() - 1, getLocation().getRow()));
-        validMoves.add(new Location(getLocation().getColumn(), getLocation().getRow() + 1));
-        validMoves.add(new Location(getLocation().getColumn(), getLocation().getRow() - 1));
-        validMoves.add(new Location(getLocation().getColumn() + 1, getLocation().getRow() + 1));
-        validMoves.add(new Location(getLocation().getColumn() + 1, getLocation().getRow() - 1));
-        validMoves.add(new Location(getLocation().getColumn() - 1, getLocation().getRow() + 1));
-        validMoves.add(new Location(getLocation().getColumn() - 1, getLocation().getRow() - 1));
-
+        ArrayList<Location> locationsToTest = new ArrayList<>();
+        locationsToTest.add(new Location(getLocation().getColumn() + 1, getLocation().getRow()));
+        locationsToTest.add(new Location(getLocation().getColumn() - 1, getLocation().getRow()));
+        locationsToTest.add(new Location(getLocation().getColumn(), getLocation().getRow() + 1));
+        locationsToTest.add(new Location(getLocation().getColumn(), getLocation().getRow() - 1));
+        locationsToTest.add(new Location(getLocation().getColumn() + 1, getLocation().getRow() + 1));
+        locationsToTest.add(new Location(getLocation().getColumn() + 1, getLocation().getRow() - 1));
+        locationsToTest.add(new Location(getLocation().getColumn() - 1, getLocation().getRow() + 1));
+        locationsToTest.add(new Location(getLocation().getColumn() - 1, getLocation().getRow() - 1));
+        for (Location l : locationsToTest) {
+            if (!isOffBoard(l)) {
+                if (!isInvalidCollision(l, board)) {
+                    validMoves.add(l);
+                }
+            }
+        }
         return validMoves;
     }
 

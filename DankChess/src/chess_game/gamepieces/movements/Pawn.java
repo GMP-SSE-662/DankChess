@@ -36,11 +36,24 @@ public class Pawn extends MovementPiece {
     public ArrayList<Location> getValidMoves(Board board) {
         ArrayList<Location> validMoves = gamePiece.getValidMoves(board);
         int direction = getPieceColor() instanceof LightColor ? -1 : 1;
-
-        validMoves.add(new Location(getLocation().getColumn(), getLocation().getRow() + direction));
-        validMoves.add(new Location(getLocation().getColumn() + 1, getLocation().getRow() + direction));
-        validMoves.add(new Location(getLocation().getColumn() - 1, getLocation().getRow() + direction));
-
+        Location locationToTest = new Location(getLocation().getColumn(), getLocation().getRow() + direction);
+        if (!isOffBoard(locationToTest)) {
+            if (!isInvalidCollision(locationToTest, board) && !isAttack(locationToTest, board)) {
+                validMoves.add(locationToTest);
+            }
+        }
+        locationToTest = new Location(getLocation().getColumn() + 1, getLocation().getRow() + direction);
+        if (!isOffBoard(locationToTest)) {
+            if (!isInvalidCollision(locationToTest, board) && isAttack(locationToTest, board)) {
+                validMoves.add(locationToTest);
+            }
+        }
+        locationToTest = new Location(getLocation().getColumn() - 1, getLocation().getRow() + direction);
+        if (!isOffBoard(locationToTest)) {
+            if (!isInvalidCollision(locationToTest, board) && isAttack(locationToTest, board)) {
+                validMoves.add(locationToTest);
+            }
+        }
         return validMoves;
     }
 

@@ -30,17 +30,9 @@ public class Queen extends MovementPiece {
     @Override
     public ArrayList<Location> getValidMoves(Board board) {
         ArrayList<Location> validMoves = gamePiece.getValidMoves(board);
-
-        for (int i = 1; i <= Constants.BOARD_SIZE / Constants.TILE_SIZE; i++) {
-            validMoves.add(new Location(getLocation().getColumn() + i, getLocation().getRow()));
-            validMoves.add(new Location(getLocation().getColumn() - i, getLocation().getRow()));
-            validMoves.add(new Location(getLocation().getColumn(), getLocation().getRow() + i));
-            validMoves.add(new Location(getLocation().getColumn(), getLocation().getRow() - i));
-            validMoves.add(new Location(getLocation().getColumn() + i, getLocation().getRow() + i));
-            validMoves.add(new Location(getLocation().getColumn() + i, getLocation().getRow() - i));
-            validMoves.add(new Location(getLocation().getColumn() - i, getLocation().getRow() + i));
-            validMoves.add(new Location(getLocation().getColumn() - i, getLocation().getRow() - i));
-        }
+        validMoves.addAll(getDiagonalMoves(getLocation(), board));
+        validMoves.addAll(getLateralMoves(getLocation(), board));
+        validMoves = removeInvalidMoves(validMoves, board);
 
         return validMoves;
     }
