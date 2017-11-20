@@ -1,18 +1,40 @@
 package chess_game;
 
+import chess_game.gamepieces.GamePiece;
+import javafx.event.EventHandler;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
-public class Tile implements Drawable {
+public class Tile extends Rectangle implements Drawable {
     private Location location;
+    GamePiece piece = null;
+    public Board board;
 
     /**
      * Creates a new tile at the specified location.
      * @param row of board.
      * @param column of board.
      */
-    public Tile(int column, int row) {
+    public Tile(int column, int row, Board board) {
         location = new Location(column, row);
+        setX(column*Constants.TILE_SIZE);
+        setY(row*Constants.TILE_SIZE);
+        setHeight(Constants.TILE_SIZE);
+        setWidth(Constants.TILE_SIZE);
+        setFill(Color.TRANSPARENT);
+
+        this.board = board;
+        setOnMouseClicked(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent t){
+                if(piece != null){
+                    board.highlightMoves(piece.getValidMoves());
+                }
+            }
+        });
     }
 
     /**

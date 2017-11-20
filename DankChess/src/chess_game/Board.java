@@ -13,17 +13,17 @@ public class Board extends Canvas {
     ArrayList<GamePiece> darkPlayer;
     ArrayList<GamePiece> pieces;
     ArrayList<Location> pieceLocations;
-    ArrayList<Tile> tiles;
+    public Tile[][] tiles;
 
-    private int boardSize;
+    public int boardSize;
 
     public Board() {
         super(Constants.BOARD_SIZE, Constants.BOARD_SIZE);
         boardSize = Constants.BOARD_SIZE / Constants.TILE_SIZE;
-        tiles = new ArrayList<>();
+        tiles = new Tile[boardSize][boardSize];
         for (int i = 0; i < boardSize; i++) {
             for (int j = 0; j < boardSize; j++) {
-                tiles.add(new Tile(j, i));
+                tiles[i][j] = new Tile(i, j, this);
             }
         }
         initializePlayers();
@@ -57,6 +57,12 @@ public class Board extends Canvas {
 
     }
 
+    public void highlightMoves(ArrayList<Location> moves){
+        for(Location move: moves){
+            tiles[move.getColumn()][move.getRow()].setOutlineMovable(this.getGraphicsContext2D());
+        }
+    }
+
     public ArrayList<Location> getPieceLocations() {
         pieceLocations = new ArrayList<>();
         for(GamePiece piece : pieces) {
@@ -67,8 +73,10 @@ public class Board extends Canvas {
 
     public void draw() {
         GraphicsContext context = this.getGraphicsContext2D();
-        for (Tile tile : tiles) {
-            tile.draw(context);
+        for (int i = 0; i < boardSize; i++){
+            for (int j = 0; j < boardSize; j++){
+                tiles[i][j].draw(context);
+            }
         }
         for (GamePiece gp : lightPlayer) {
             gp.draw(context);
