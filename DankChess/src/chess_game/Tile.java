@@ -1,6 +1,7 @@
 package chess_game;
 
 import chess_game.colors.DarkColor;
+import chess_game.colors.LightColor;
 import chess_game.gamepieces.GamePiece;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -9,11 +10,12 @@ import javafx.scene.shape.Rectangle;
 import java.util.Observable;
 import java.util.Observer;
 
-public class Tile extends Rectangle implements Observer{
+public class Tile extends Rectangle implements Observer {
     private Location location;
     public GamePiece piece = null;
     public Board board;
     private boolean isHighlighted = false;
+    private boolean isTileTurn = false;
 
     /**
      * Creates a new tile at the specified location.
@@ -32,7 +34,7 @@ public class Tile extends Rectangle implements Observer{
         setOnMouseClicked(t -> {
             if(isHighlighted){
                 moveActivePiece(board);
-            } else if (piece != null){
+            } else if (piece != null && isTileTurn){
                 board.highlightMoves(piece.getValidMoves(board));
                 makeActiveTile(board);
             }
@@ -72,13 +74,13 @@ public class Tile extends Rectangle implements Observer{
     }
 
     /**
-     * Sets the outline of the tile to specify availble pieces.
+     * Sets the outline of the tile to specify available pieces.
      * @param context the current canvas graphics context.
      */
-    public void setOutlineYourPieces(GraphicsContext context) {
-        context.setStroke(Color.RED);
+    public void setTurnOutline(GraphicsContext context) {
         clearTile(context);
         draw(context);
+        context.setStroke(Color.SIENNA);
         drawOutline(context);
     }
 
@@ -138,6 +140,7 @@ public class Tile extends Rectangle implements Observer{
 
     public void makeActiveTile(Board board){
         board.setActiveTile(this);
+        this.setTurnOutline(board.getGraphicsContext2D());
     }
 
     public void moveActivePiece(Board board){
@@ -153,8 +156,14 @@ public class Tile extends Rectangle implements Observer{
      */
     @Override
     public void update(Observable o, Object arg) {
-        if(piece.getPieceColor() instanceof DarkColor && arg.equals(true)){
-            this.setOutlineYourPieces(board.getGraphicsContext2D());
+        if (piece != null && LightColor.getLightPieceColor().equals(piece.getPieceColor()) && arg.equals(true)) {
+            this.setTurnOutline(board.getGraphicsContext2D());
+            isTileTurn = true;
+        } else if (piece != null && DarkColor.getDarkPieceColor().equals(piece.getPieceColor()) && arg.equals(false)) {
+            this.setTurnOutline(board.getGraphicsContext2D());
+            isTileTurn = true;
+        } else {
+            isTileTurn = false;
         }
     }
 }

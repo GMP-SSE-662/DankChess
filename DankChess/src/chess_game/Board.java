@@ -9,6 +9,7 @@ import javafx.scene.canvas.GraphicsContext;
 import java.util.ArrayList;
 
 public class Board extends Canvas {
+    TurnWarden turn;
     LightPieceFactory lpf;
     DarkPieceFactory dpf;
     ArrayList<GamePiece> lightPlayer;
@@ -19,14 +20,15 @@ public class Board extends Canvas {
     public Board() {
         super(Constants.BOARD_SIZE, Constants.BOARD_SIZE);
         tiles = new Tile[Constants.TILES_PER_SIDE][Constants.TILES_PER_SIDE];
-        TurnWarden warden = new TurnWarden(this);
+        turn = new TurnWarden();
         for (int i = 0; i < Constants.TILES_PER_SIDE; i++) {
             for (int j = 0; j < Constants.TILES_PER_SIDE; j++) {
                 tiles[i][j] = new Tile(i, j, this);
-                warden.addObserver(tiles[i][j]);
+                turn.addObserver(tiles[i][j]);
             }
         }
         initializePlayers();
+        turn.toggleTurn();
     }
 
     private void initializePlayers() {
@@ -89,6 +91,7 @@ public class Board extends Canvas {
         activeTile.piece = null;
         activeTile = null;
         draw();
+        turn.toggleTurn();
     }
 
     public void draw() {

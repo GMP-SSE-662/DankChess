@@ -2,20 +2,19 @@ package chess_game;
 
 import java.util.Observable;
 
-public class TurnWarden extends Observable{
-    Board board = null;
-    boolean playerOneTurn = true;
+public class TurnWarden extends Observable {
+    private boolean isLightPlayerTurn;
 
-    public TurnWarden(Board gameBoard){
-        board = gameBoard;
+    public TurnWarden() {
+        isLightPlayerTurn = false;
     }
 
     /**
-     * Toggles the current player turn
-     * @return boolean isPlayerOneTurn
+     * Toggles the current player turn and updates observers.
      */
-    boolean toggleTurn(){
+    void toggleTurn() {
+        isLightPlayerTurn = !isLightPlayerTurn;
         setChanged();
-        return playerOneTurn = !playerOneTurn;
+        notifyObservers(isLightPlayerTurn);
     }
 }
