@@ -1,5 +1,6 @@
 package chess_game;
 
+import chess_game.colors.DarkColor;
 import chess_game.gamepieces.GamePiece;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.GraphicsContext;
@@ -72,6 +73,17 @@ public class Tile extends Rectangle implements Drawable, Observer{
     }
 
     /**
+     * Sets the outline of the tile to specify availble pieces.
+     * @param context the current canvas graphics context.
+     */
+    public void setOutlineYourPieces(GraphicsContext context) {
+        context.setStroke(Color.RED);
+        clearTile(context);
+        draw(context);
+        drawOutline(context);
+    }
+
+    /**
      * Sets the outline of the tile to specify no legal move or just normal tile.
      * @param context the current canvas graphics context.
      */
@@ -126,6 +138,8 @@ public class Tile extends Rectangle implements Drawable, Observer{
      */
     @Override
     public void update(Observable o, Object arg) {
-
+        if(piece.getPieceColor() instanceof DarkColor && arg.equals(true)){
+            this.setOutlineYourPieces(board.getGraphicsContext2D());
+        }
     }
 }

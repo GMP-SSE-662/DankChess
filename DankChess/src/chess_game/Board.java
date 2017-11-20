@@ -23,10 +23,11 @@ public class Board extends Canvas {
         super(Constants.BOARD_SIZE, Constants.BOARD_SIZE);
         boardSize = Constants.BOARD_SIZE / Constants.TILE_SIZE;
         tiles = new Tile[boardSize][boardSize];
-
+        TurnWarden warden = new TurnWarden(this);
         for (int i = 0; i < boardSize; i++) {
             for (int j = 0; j < boardSize; j++) {
                 tiles[i][j] = new Tile(i, j, this);
+                warden.addObserver(tiles[i][j]);
             }
         }
 
