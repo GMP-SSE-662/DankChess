@@ -30,14 +30,32 @@ public class Bishop extends MovementPiece {
     @Override
     public ArrayList<Location> getValidMoves(Board board) {
         ArrayList<Location> validMoves = gamePiece.getValidMoves(board);
-
+        Location locationToTest;
         for (int i = 1; i <= Constants.TILES_PER_SIDE; i++) {
-            validMoves.add(new Location(getLocation().getColumn() + i, getLocation().getRow() + i));
-            validMoves.add(new Location(getLocation().getColumn() + i, getLocation().getRow() - i));
-            validMoves.add(new Location(getLocation().getColumn() - i, getLocation().getRow() + i));
-            validMoves.add(new Location(getLocation().getColumn() - i, getLocation().getRow() - i));
+            locationToTest = new Location(getLocation().getColumn() + i, getLocation().getRow() + i);
+            if (isOffBoard(locationToTest)) break;
+            if (isInvalidCollision(locationToTest, board)) break;
+            validMoves.add(locationToTest);
         }
-
+        for (int i = 1; i <= Constants.TILES_PER_SIDE; i++) {
+            locationToTest = new Location(getLocation().getColumn() + i, getLocation().getRow() - i);
+            if (isOffBoard(locationToTest)) break;
+            if (isInvalidCollision(locationToTest, board)) break;
+            validMoves.add(locationToTest);
+        }
+        for (int i = 1; i <= Constants.TILES_PER_SIDE; i++) {
+            locationToTest = new Location(getLocation().getColumn() - i, getLocation().getRow() + i);
+            if (isOffBoard(locationToTest)) break;
+            if (isInvalidCollision(locationToTest, board)) break;
+            validMoves.add(locationToTest);
+        }
+        for (int i = 1; i <= Constants.TILES_PER_SIDE; i++) {
+            locationToTest = new Location(getLocation().getColumn() - i, getLocation().getRow() - i);
+            if (isOffBoard(locationToTest)) break;
+            if (isInvalidCollision(locationToTest, board)) break;
+            validMoves.add(locationToTest);
+        }
+        validMoves = removeInvalidMoves(validMoves, board);
         return validMoves;
     }
 
