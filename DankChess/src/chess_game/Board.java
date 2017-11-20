@@ -13,8 +13,6 @@ public class Board extends Canvas {
     DarkPieceFactory dpf;
     ArrayList<GamePiece> lightPlayer;
     ArrayList<GamePiece> darkPlayer;
-    ArrayList<GamePiece> pieces;
-    ArrayList<Location> pieceLocations;
     public Tile[][] tiles;
     TurnWarden warden;
 
@@ -84,14 +82,6 @@ public class Board extends Canvas {
             tiles[move.getColumn()][move.getRow()].setOutlineMovable(this.getGraphicsContext2D());
         }
 
-    }
-
-    public ArrayList<Location> getPieceLocations() {
-        pieceLocations = new ArrayList<>();
-        for(GamePiece piece : pieces) {
-            pieceLocations.add(piece.getLocation());
-        }
-        return pieceLocations;
     }
 
     public void setActiveTile(Tile tile){
