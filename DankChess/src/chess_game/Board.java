@@ -73,7 +73,7 @@ public class Board extends Canvas {
         for(int i = 0; i < boardSize; i++){
             for(int j = 0; j < boardSize; j++){
                 tiles[i][j].draw(this.getGraphicsContext2D());
-                if (tiles[i][j])
+                if (tiles[i][j].isHiglighted()) tiles[i][j].setOutlineNormal(this.getGraphicsContext2D());
             }
         }
 
