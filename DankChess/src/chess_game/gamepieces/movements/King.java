@@ -5,7 +5,6 @@ import chess_game.Location;
 import chess_game.colors.PieceColor;
 import chess_game.gamepieces.GamePiece;
 import chess_game.gamepieces.MovementPiece;
-import javafx.scene.canvas.GraphicsContext;
 
 import java.util.ArrayList;
 
@@ -52,10 +51,6 @@ public class King extends MovementPiece {
             }
         }
         return validMoves;
-    }
-
-    public void draw(GraphicsContext context, String sprite){
-        gamePiece.draw(context, sprite);
     }
 
     @Override
