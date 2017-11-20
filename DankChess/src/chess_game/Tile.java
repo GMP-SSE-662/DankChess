@@ -82,7 +82,7 @@ public class Tile extends Rectangle implements Drawable, Observer {
     public void setOutlineYourPieces(GraphicsContext context) {
         draw(context);
         drawOutline(context);
-        isHiglighted = true;
+        isHighlighted = true;
     }
 
     /**
