@@ -68,7 +68,7 @@ public class Board extends Canvas {
     public void highlightMoves(ArrayList<Location> moves){
         for(int i = 0; i < Constants.TILES_PER_SIDE; i++){
             for(int j = 0; j < Constants.TILES_PER_SIDE; j++){
-                tiles[i][j].draw(this.getGraphicsContext2D());
+                draw();
                 if (tiles[i][j].isHighlighted()) tiles[i][j].setOutlineNormal(this.getGraphicsContext2D());
             }
         }
@@ -100,10 +100,10 @@ public class Board extends Canvas {
             }
         }
         for (GamePiece gp : lightPlayer) {
-            gp.draw(context);
+            gp.draw(context, gp.getBoardSprite());
         }
         for (GamePiece gp : darkPlayer) {
-            gp.draw(context);
+            gp.draw(context, gp.getBoardSprite());
         }
     }
 }

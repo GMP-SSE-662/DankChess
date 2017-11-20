@@ -9,7 +9,7 @@ import javafx.scene.shape.Rectangle;
 import java.util.Observable;
 import java.util.Observer;
 
-public class Tile extends Rectangle implements Drawable, Observer{
+public class Tile extends Rectangle implements Observer{
     private Location location;
     public GamePiece piece = null;
     public Board board;
@@ -51,13 +51,12 @@ public class Tile extends Rectangle implements Drawable, Observer{
      * Draws the tile.
      * @param context the current canvas graphics context.
      */
-    @Override
     public void draw(GraphicsContext context) {
         context.setFill(getColor());
         context.fillRect(location.getColumn() * Constants.TILE_SIZE, location.getRow() * Constants.TILE_SIZE,
                 Constants.TILE_SIZE, Constants.TILE_SIZE);
         context.setStroke(Color.BLACK);
-        if(piece != null) piece.draw(context);
+        if(piece != null) piece.draw(context, piece.getBoardSprite());
     }
 
     /**
@@ -142,7 +141,8 @@ public class Tile extends Rectangle implements Drawable, Observer{
     }
 
     public void moveActivePiece(Board board){
-        this.piece = board.getActiveTile().piece;
+        board.tiles[this.getLocation().getColumn()][this.getLocation().getRow()].piece = board.getActiveTile().piece;
+        board.tiles[this.getLocation().getColumn()][this.getLocation().getRow()].piece.setLocation(this.getLocation());
         board.clearActiveTile();
         this.setOutlineNormal(board.getGraphicsContext2D());
     }

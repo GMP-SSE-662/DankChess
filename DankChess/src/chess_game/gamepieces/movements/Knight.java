@@ -5,6 +5,7 @@ import chess_game.Location;
 import chess_game.colors.PieceColor;
 import chess_game.gamepieces.GamePiece;
 import chess_game.gamepieces.MovementPiece;
+import javafx.scene.canvas.GraphicsContext;
 
 import java.util.ArrayList;
 
@@ -27,6 +28,11 @@ public class Knight extends MovementPiece {
     }
 
     @Override
+    public void setLocation(Location location) {
+        gamePiece.setLocation(location);
+    }
+
+    @Override
     public ArrayList<Location> getValidMoves(Board board) {
         ArrayList<Location> validMoves = gamePiece.getValidMoves(board);
         validMoves.add(new Location(getLocation().getColumn() + 1, getLocation().getRow() + 2));
@@ -39,6 +45,10 @@ public class Knight extends MovementPiece {
         validMoves.add(new Location(getLocation().getColumn() - 2, getLocation().getRow() - 1));
         validMoves = removeInvalidMoves(validMoves, board);
         return validMoves;
+    }
+
+    public void draw(GraphicsContext context, String sprite){
+        gamePiece.draw(context, sprite);
     }
 
     @Override
