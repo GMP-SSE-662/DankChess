@@ -36,9 +36,9 @@ public class Pawn extends MovementPiece {
         ArrayList<Location> validMoves = gamePiece.getValidMoves();
         int direction = getPieceColor() instanceof LightColor ? -1 : 1;
 
-        validMoves.add(new Location(getLocation().getColumn(), getLocation().getRow() + (direction * 1)));
-        validMoves.add(new Location(getLocation().getColumn() + 1, getLocation().getRow() + (direction * 1)));
-        validMoves.add(new Location(getLocation().getColumn() - 1, getLocation().getRow() + (direction * 1)));
+        validMoves.add(new Location(getLocation().getColumn(), getLocation().getRow() + direction));
+        validMoves.add(new Location(getLocation().getColumn() + 1, getLocation().getRow() + direction));
+        validMoves.add(new Location(getLocation().getColumn() - 1, getLocation().getRow() + direction));
 
         return validMoves;
     }

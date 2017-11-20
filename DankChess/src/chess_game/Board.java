@@ -59,5 +59,13 @@ public class Board extends Canvas {
         for (GamePiece gp : darkPlayer) {
             gp.draw(context);
         }
+        ArrayList<Location> v = lightPlayer.get(4).getValidMoves();
+        tiles.forEach(tile -> {
+            for (Location l : v) {
+                if (tile.getLocation().equals(l)) {
+                    tile.setOutlineMovable(context);
+                }
+            }
+        });
     }
 }
