@@ -1,5 +1,6 @@
 package chess_game.gamepieces.movements;
 
+import chess_game.Board;
 import chess_game.Constants;
 import chess_game.Location;
 import chess_game.colors.PieceColor;
@@ -27,8 +28,8 @@ public class Knight extends MovementPiece {
     }
 
     @Override
-    public ArrayList<Location> getValidMoves() {
-        ArrayList<Location> validMoves = gamePiece.getValidMoves();
+    public ArrayList<Location> getValidMoves(Board board) {
+        ArrayList<Location> validMoves = gamePiece.getValidMoves(board);
 
         validMoves.add(new Location(getLocation().getColumn() + 1, getLocation().getRow() + 2));
         validMoves.add(new Location(getLocation().getColumn() - 1, getLocation().getRow() + 2));
@@ -46,6 +47,15 @@ public class Knight extends MovementPiece {
                 i--;
             }
         }
+
+        for(int i = 0; i < validMoves.size(); i++){
+            if(board.tiles[validMoves.get(i).getColumn()][validMoves.get(i).getRow()].piece != null &&
+                    board.tiles[validMoves.get(i).getColumn()][validMoves.get(i).getRow()].piece.getPieceColor().equals(this.getPieceColor())){
+                validMoves.remove(i);
+                i--;
+            }
+        }
+
         return validMoves;
     }
 

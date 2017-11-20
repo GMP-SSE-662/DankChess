@@ -1,5 +1,6 @@
 package chess_game.gamepieces.movements;
 
+import chess_game.Board;
 import chess_game.Location;
 import chess_game.colors.PieceColor;
 import chess_game.gamepieces.GamePiece;
@@ -32,8 +33,8 @@ public class Pawn extends MovementPiece {
      * @return all potentially valid moves.
      */
     @Override
-    public ArrayList<Location> getValidMoves() {
-        ArrayList<Location> validMoves = gamePiece.getValidMoves();
+    public ArrayList<Location> getValidMoves(Board board) {
+        ArrayList<Location> validMoves = gamePiece.getValidMoves(board);
         int direction = getPieceColor() instanceof LightColor ? -1 : 1;
 
         validMoves.add(new Location(getLocation().getColumn(), getLocation().getRow() + direction));

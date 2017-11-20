@@ -1,5 +1,6 @@
 package chess_game.gamepieces.movements;
 
+import chess_game.Board;
 import chess_game.Location;
 import chess_game.colors.PieceColor;
 import chess_game.gamepieces.GamePiece;
@@ -26,8 +27,8 @@ public class King extends MovementPiece {
     }
 
     @Override
-    public ArrayList<Location> getValidMoves() {
-        ArrayList<Location> validMoves = gamePiece.getValidMoves();
+    public ArrayList<Location> getValidMoves(Board board) {
+        ArrayList<Location> validMoves = gamePiece.getValidMoves(board);
 
         validMoves.add(new Location(getLocation().getColumn() + 1, getLocation().getRow()));
         validMoves.add(new Location(getLocation().getColumn() - 1, getLocation().getRow()));
