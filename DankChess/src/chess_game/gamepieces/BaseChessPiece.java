@@ -18,9 +18,9 @@ public class BaseChessPiece extends GamePiece {
 
     @Override
     public String getBoardSprite() {
-        if (DarkColor.getDarkPieceColor().equals(getPieceColor())) {
+        if (getPieceColor() instanceof DarkColor) {
             return "d_";
-        } else if (LightColor.getLightPieceColor().equals(getPieceColor())) {
+        } else if (getPieceColor() instanceof LightColor) {
             return "l_";
         } else {
             return Constants.ERROR_STRING;

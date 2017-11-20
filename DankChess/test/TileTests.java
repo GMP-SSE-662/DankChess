@@ -1,4 +1,10 @@
+import chess_game.Location;
 import chess_game.Tile;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class TileTests {
     private Tile testTile;
