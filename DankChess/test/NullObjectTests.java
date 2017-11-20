@@ -34,7 +34,7 @@ public class NullObjectTests {
     private Board testBoard;
     private Constants testConstants;
     private Drawable testDrawable;
-    private TurnManager testTurnManger;
+    private TurnWarden testTurnManger;
 
     @Test
     public void nullLocationTest() {
