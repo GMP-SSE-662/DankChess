@@ -13,7 +13,7 @@ public class Tile extends Rectangle implements Drawable, Observer{
     private Location location;
     public GamePiece piece = null;
     public Board board;
-    private boolean isHiglighted = false;
+    private boolean isHighlighted = false;
 
     /**
      * Creates a new tile at the specified location.
@@ -30,7 +30,7 @@ public class Tile extends Rectangle implements Drawable, Observer{
 
         this.board = board;
         setOnMouseClicked(t -> {
-            if(isHiglighted){
+            if(isHighlighted){
                 moveActivePiece(board);
             } else if (piece != null){
                 board.highlightMoves(piece.getValidMoves(board));
@@ -69,7 +69,7 @@ public class Tile extends Rectangle implements Drawable, Observer{
         draw(context);
         context.setStroke(Color.DARKBLUE);
         drawOutline(context);
-        isHiglighted = true;
+        isHighlighted = true;
     }
 
     /**
@@ -92,7 +92,7 @@ public class Tile extends Rectangle implements Drawable, Observer{
         draw(context);
         context.setStroke(getColor());
         drawOutline(context);
-        isHiglighted = false;
+        isHighlighted = false;
     }
 
     /**
@@ -104,8 +104,8 @@ public class Tile extends Rectangle implements Drawable, Observer{
                 Constants.TILE_SIZE - 2, Constants.TILE_SIZE - 2);
     }
 
-    public boolean isHiglighted(){
-        return isHiglighted;
+    public boolean isHighlighted(){
+        return isHighlighted;
     }
 
     /**
