@@ -10,30 +10,28 @@ import java.util.ArrayList;
 
 public class Rook extends MovementPiece {
 
-    private GamePiece gamePiece;
-
     public Rook(GamePiece gamePiece) {
-        this.gamePiece = gamePiece;
+        setPiece(gamePiece);
     }
 
     @Override
     public PieceColor getPieceColor() {
-        return gamePiece.getPieceColor();
+        return getPiece().getPieceColor();
     }
 
     @Override
     public Location getLocation() {
-        return gamePiece.getLocation();
+        return getPiece().getLocation();
     }
 
     @Override
     public void setLocation(Location location) {
-        gamePiece.setLocation(location);
+        getPiece().setLocation(location);
     }
 
     @Override
     public ArrayList<Location> getValidMoves(Board board) {
-        ArrayList<Location> validMoves = gamePiece.getValidMoves(board);
+        ArrayList<Location> validMoves = getPiece().getValidMoves(board);
         validMoves.addAll(getLateralMoves(getLocation(), board));
         validMoves = removeInvalidMoves(validMoves, board);
         return validMoves;
@@ -41,6 +39,6 @@ public class Rook extends MovementPiece {
 
     @Override
     public String getBoardSprite() {
-        return gamePiece.getBoardSprite() + "R";
+        return getPiece().getBoardSprite() + "R";
     }
 }

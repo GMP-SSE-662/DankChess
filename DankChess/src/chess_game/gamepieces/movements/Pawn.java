@@ -11,25 +11,23 @@ import java.util.ArrayList;
 
 public class Pawn extends MovementPiece {
 
-    private GamePiece gamePiece;
-
     public Pawn(GamePiece gamePiece) {
-        this.gamePiece = gamePiece;
+        this.setPiece(gamePiece);
     }
 
     @Override
     public PieceColor getPieceColor() {
-        return gamePiece.getPieceColor();
+        return getPiece().getPieceColor();
     }
 
     @Override
     public Location getLocation() {
-        return gamePiece.getLocation();
+        return getPiece().getLocation();
     }
 
     @Override
     public void setLocation(Location location) {
-        gamePiece.setLocation(location);
+        getPiece().setLocation(location);
     }
 
     /**
@@ -39,7 +37,7 @@ public class Pawn extends MovementPiece {
      */
     @Override
     public ArrayList<Location> getValidMoves(Board board) {
-        ArrayList<Location> validMoves = gamePiece.getValidMoves(board);
+        ArrayList<Location> validMoves = getPiece().getValidMoves(board);
         int direction = getPieceColor() instanceof LightColor ? -1 : 1;
         Location locationToTest = new Location(getLocation().getColumn(), getLocation().getRow() + direction);
         if (!isOffBoard(locationToTest)) {
@@ -64,6 +62,6 @@ public class Pawn extends MovementPiece {
 
     @Override
     public String getBoardSprite() {
-        return gamePiece.getBoardSprite() + "P";
+        return getPiece().getBoardSprite() + "P";
     }
 }

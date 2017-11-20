@@ -10,6 +10,7 @@ import javafx.scene.canvas.GraphicsContext;
 import java.util.ArrayList;
 
 public abstract class GamePiece implements Drawable {
+    GamePiece piece;
     private PieceColor pieceColor;
     private Location location;
 
@@ -36,5 +37,17 @@ public abstract class GamePiece implements Drawable {
     public void draw(GraphicsContext gc) {
         gc.strokeText(getBoardSprite(), getLocation().getColumn() * Constants.TILE_SIZE + Constants.TILE_SIZE / 3,
                 (getLocation().getRow() + 1) * Constants.TILE_SIZE - Constants.TILE_SIZE / 3, Constants.TILE_SIZE / 3);
+    }
+
+    public void setPiece(GamePiece piece){
+        if(this.piece instanceof MovementPiece){
+            this.piece.setPiece(piece);
+        } else {
+            this.piece = piece;
+        }
+    }
+
+    public GamePiece getPiece(){
+        return piece;
     }
 }

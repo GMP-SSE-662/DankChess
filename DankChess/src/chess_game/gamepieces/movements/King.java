@@ -10,30 +10,28 @@ import java.util.ArrayList;
 
 public class King extends MovementPiece {
 
-    private GamePiece gamePiece;
-
     public King(GamePiece gamePiece) {
-        this.gamePiece = gamePiece;
+        setPiece(gamePiece);
     }
 
     @Override
     public PieceColor getPieceColor() {
-        return gamePiece.getPieceColor();
+        return getPiece().getPieceColor();
     }
 
     @Override
     public Location getLocation() {
-        return gamePiece.getLocation();
+        return getPiece().getLocation();
     }
 
     @Override
     public void setLocation(Location location) {
-        gamePiece.setLocation(location);
+        getPiece().setLocation(location);
     }
 
     @Override
     public ArrayList<Location> getValidMoves(Board board) {
-        ArrayList<Location> validMoves = gamePiece.getValidMoves(board);
+        ArrayList<Location> validMoves = getPiece().getValidMoves(board);
         ArrayList<Location> locationsToTest = new ArrayList<>();
         locationsToTest.add(new Location(getLocation().getColumn() + 1, getLocation().getRow()));
         locationsToTest.add(new Location(getLocation().getColumn() - 1, getLocation().getRow()));
@@ -55,6 +53,6 @@ public class King extends MovementPiece {
 
     @Override
     public String getBoardSprite() {
-        return gamePiece.getBoardSprite() + "K";
+        return getPiece().getBoardSprite() + "K";
     }
 }
