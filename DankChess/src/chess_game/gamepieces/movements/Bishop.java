@@ -31,7 +31,7 @@ public class Bishop extends MovementPiece {
     public ArrayList<Location> getValidMoves(Board board) {
         ArrayList<Location> validMoves = gamePiece.getValidMoves(board);
 
-        for (int i = 1; i <= Constants.BOARD_SIZE / Constants.TILE_SIZE; i++) {
+        for (int i = 1; i <= Constants.TILES_PER_SIDE; i++) {
             validMoves.add(new Location(getLocation().getColumn() + i, getLocation().getRow() + i));
             validMoves.add(new Location(getLocation().getColumn() + i, getLocation().getRow() - i));
             validMoves.add(new Location(getLocation().getColumn() - i, getLocation().getRow() + i));
