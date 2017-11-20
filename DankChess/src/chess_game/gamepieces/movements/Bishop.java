@@ -1,5 +1,6 @@
 package chess_game.gamepieces.movements;
 
+import chess_game.Board;
 import chess_game.Constants;
 import chess_game.Location;
 import chess_game.colors.PieceColor;
@@ -27,8 +28,8 @@ public class Bishop extends MovementPiece {
     }
 
     @Override
-    public ArrayList<Location> getValidMoves() {
-        ArrayList<Location> validMoves = gamePiece.getValidMoves();
+    public ArrayList<Location> getValidMoves(Board board) {
+        ArrayList<Location> validMoves = gamePiece.getValidMoves(board);
 
         for (int i = 1; i <= Constants.BOARD_SIZE / Constants.TILE_SIZE; i++) {
             validMoves.add(new Location(getLocation().getColumn() + i, getLocation().getRow() + i));

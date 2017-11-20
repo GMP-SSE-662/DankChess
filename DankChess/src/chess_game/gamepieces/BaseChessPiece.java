@@ -1,5 +1,6 @@
 package chess_game.gamepieces;
 
+import chess_game.Board;
 import chess_game.Constants;
 import chess_game.Location;
 import chess_game.colors.DarkColor;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 public class BaseChessPiece extends GamePiece {
 
     @Override
-    public ArrayList<Location> getValidMoves() {
+    public ArrayList<Location> getValidMoves(Board board) {
         ArrayList<Location> validMoves = new ArrayList<>();
         return validMoves;
     }

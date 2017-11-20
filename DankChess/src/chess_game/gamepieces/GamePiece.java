@@ -1,5 +1,6 @@
 package chess_game.gamepieces;
 
+import chess_game.Board;
 import chess_game.Constants;
 import chess_game.Drawable;
 import chess_game.Location;
@@ -32,7 +33,7 @@ public abstract class GamePiece implements Drawable {
         location = new Location(column, row);
     }
 
-    public abstract ArrayList<Location> getValidMoves();
+    public abstract ArrayList<Location> getValidMoves(Board board);
 
     public abstract String getBoardSprite();
 

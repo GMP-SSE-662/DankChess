@@ -15,6 +15,7 @@ public class Tile extends Rectangle implements Drawable, Observer{
     private Location location;
     public GamePiece piece = null;
     public Board board;
+    private boolean isHiglighted;
 
     /**
      * Creates a new tile at the specified location.
@@ -35,7 +36,7 @@ public class Tile extends Rectangle implements Drawable, Observer{
             @Override
             public void handle(MouseEvent t){
                 if(piece != null){
-                    board.highlightMoves(piece.getValidMoves());
+                    board.highlightMoves(piece.getValidMoves(board));
                 }
             }
         });
@@ -70,6 +71,7 @@ public class Tile extends Rectangle implements Drawable, Observer{
         clearTile(context);
         draw(context);
         drawOutline(context);
+        isHiglighted = true;
     }
 
     /**
@@ -92,6 +94,7 @@ public class Tile extends Rectangle implements Drawable, Observer{
         clearTile(context);
         draw(context);
         drawOutline(context);
+        isHiglighted = false;
     }
 
     /**
@@ -101,6 +104,10 @@ public class Tile extends Rectangle implements Drawable, Observer{
     private void drawOutline(GraphicsContext context) {
         context.strokeRect(location.getColumn() * Constants.TILE_SIZE + 1, location.getRow() * Constants.TILE_SIZE + 1,
                 Constants.TILE_SIZE - 2, Constants.TILE_SIZE - 2);
+    }
+
+    public boolean isHiglighted(){
+        return isHiglighted;
     }
 
     /**
