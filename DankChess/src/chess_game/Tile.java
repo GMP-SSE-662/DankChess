@@ -15,7 +15,7 @@ public class Tile extends Rectangle implements Drawable, Observer{
     private Location location;
     public GamePiece piece = null;
     public Board board;
-    private boolean isHiglighted;
+    private boolean isHiglighted = false;
 
     /**
      * Creates a new tile at the specified location.
@@ -32,8 +32,11 @@ public class Tile extends Rectangle implements Drawable, Observer{
 
         this.board = board;
         setOnMouseClicked(t -> {
-            if(piece != null){
+            if(isHiglighted){
+                moveActivePiece(board);
+            } else if (piece != null){
                 board.highlightMoves(piece.getValidMoves(board));
+                makeActiveTile(board);
             }
         });
     }
@@ -55,6 +58,7 @@ public class Tile extends Rectangle implements Drawable, Observer{
         context.setFill(getColor());
         context.fillRect(location.getColumn() * Constants.TILE_SIZE, location.getRow() * Constants.TILE_SIZE,
                 Constants.TILE_SIZE, Constants.TILE_SIZE);
+        context.setStroke(Color.BLACK);
         if(piece != null) piece.draw(context);
     }
 
@@ -63,9 +67,9 @@ public class Tile extends Rectangle implements Drawable, Observer{
      * @param context the current canvas graphics context.
      */
     public void setOutlineMovable(GraphicsContext context) {
-        context.setStroke(Color.DARKBLUE);
         clearTile(context);
         draw(context);
+        context.setStroke(Color.DARKBLUE);
         drawOutline(context);
         isHiglighted = true;
     }
@@ -86,9 +90,9 @@ public class Tile extends Rectangle implements Drawable, Observer{
      * @param context the current canvas graphics context.
      */
     public void setOutlineNormal(GraphicsContext context) {
-        context.setStroke(getColor());
         clearTile(context);
         draw(context);
+        context.setStroke(getColor());
         drawOutline(context);
         isHiglighted = false;
     }
@@ -133,6 +137,16 @@ public class Tile extends Rectangle implements Drawable, Observer{
                 return Color.WHITESMOKE;
             }
         }
+    }
+
+    public void makeActiveTile(Board board){
+        board.setActiveTile(this);
+    }
+
+    public void moveActivePiece(Board board){
+        this.piece = board.getActiveTile().piece;
+        board.clearActiveTile();
+        this.setOutlineNormal(board.getGraphicsContext2D());
     }
 
     /**

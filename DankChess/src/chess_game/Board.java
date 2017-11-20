@@ -16,6 +16,7 @@ public class Board extends Canvas {
     ArrayList<GamePiece> pieces;
     ArrayList<Location> pieceLocations;
     public Tile[][] tiles;
+    Tile activeTile = null;
 
     public int boardSize;
 
@@ -73,6 +74,7 @@ public class Board extends Canvas {
         for(int i = 0; i < boardSize; i++){
             for(int j = 0; j < boardSize; j++){
                 tiles[i][j].draw(this.getGraphicsContext2D());
+                if (tiles[i][j].isHiglighted()) tiles[i][j].setOutlineNormal(this.getGraphicsContext2D());
             }
         }
 
@@ -87,6 +89,20 @@ public class Board extends Canvas {
             pieceLocations.add(piece.getLocation());
         }
         return pieceLocations;
+    }
+
+    public void setActiveTile(Tile tile){
+        activeTile = tile;
+    }
+
+    public Tile getActiveTile(){
+        return activeTile;
+    }
+
+    public void clearActiveTile(){
+        activeTile.piece = null;
+        activeTile = null;
+        draw();
     }
 
     public void draw() {
