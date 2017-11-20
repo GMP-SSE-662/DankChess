@@ -68,11 +68,10 @@ public class Board extends Canvas {
     public void highlightMoves(ArrayList<Location> moves){
         for(int i = 0; i < Constants.TILES_PER_SIDE; i++){
             for(int j = 0; j < Constants.TILES_PER_SIDE; j++){
-                draw();
                 if (tiles[i][j].isHighlighted()) tiles[i][j].setOutlineNormal(this.getGraphicsContext2D());
             }
         }
-
+        draw();
         for(Location move: moves){
             tiles[move.getColumn()][move.getRow()].setOutlineMovable(this.getGraphicsContext2D());
         }
