@@ -1,14 +1,13 @@
 package chess_game.colors;
 
 public class DarkColor implements PieceColor {
-    private static PieceColor instance;
-
-    public static PieceColor getDarkPieceColor() {
-        if (instance == null) {
-            instance = new DarkColor();
-        }
-        return instance;
+    @Override
+    public String getColor() {
+        return "dark";
     }
 
-    private DarkColor(){}
+    public boolean equals(PieceColor color){
+        if (color.getColor().equals(this.getColor())) return true;
+        else return false;
+    }
 }

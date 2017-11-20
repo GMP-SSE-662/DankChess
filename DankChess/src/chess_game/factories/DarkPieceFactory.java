@@ -1,9 +1,9 @@
 package chess_game.factories;
 
 import chess_game.Location;
-import chess_game.colors.DarkColor;
 import chess_game.gamepieces.BaseChessPiece;
 import chess_game.gamepieces.GamePiece;
+import chess_game.colors.DarkColor;
 import chess_game.gamepieces.movements.*;
 
 public class DarkPieceFactory implements ChessPieceFactory {
@@ -40,7 +40,7 @@ public class DarkPieceFactory implements ChessPieceFactory {
 
     private GamePiece createDarkPiece(Location location) {
         GamePiece piece = new BaseChessPiece();
-        piece.setPieceColor(DarkColor.getDarkPieceColor());
+        piece.setPieceColor(new DarkColor());
         piece.setLocation(location);
         return piece;
     }

@@ -13,15 +13,16 @@ public class Board extends Canvas {
     DarkPieceFactory dpf;
     ArrayList<GamePiece> lightPlayer;
     ArrayList<GamePiece> darkPlayer;
-    ArrayList<GamePiece> pieces;
-    ArrayList<Location> pieceLocations;
     public Tile[][] tiles;
+    TurnWarden warden;
+
+    public int boardSize;
     Tile activeTile;
 
     public Board() {
         super(Constants.BOARD_SIZE, Constants.BOARD_SIZE);
         tiles = new Tile[Constants.TILES_PER_SIDE][Constants.TILES_PER_SIDE];
-        TurnWarden warden = new TurnWarden(this);
+        warden = new TurnWarden(this);
         for (int i = 0; i < Constants.TILES_PER_SIDE; i++) {
             for (int j = 0; j < Constants.TILES_PER_SIDE; j++) {
                 tiles[i][j] = new Tile(i, j, this);
@@ -58,6 +59,7 @@ public class Board extends Canvas {
         darkPlayer.add(dpf.createQueen(new Location(3, 0)));
         darkPlayer.add(dpf.createKing(new Location(boardSize - 4, 0)));
 
+
         for(GamePiece piece: lightPlayer){
             tiles[piece.getLocation().getColumn()][piece.getLocation().getRow()].piece = piece;
         }
@@ -65,6 +67,7 @@ public class Board extends Canvas {
         for(GamePiece piece: darkPlayer){
             tiles[piece.getLocation().getColumn()][piece.getLocation().getRow()].piece = piece;
         }
+
     }
 
     public void highlightMoves(ArrayList<Location> moves){
@@ -78,14 +81,7 @@ public class Board extends Canvas {
         for(Location move: moves){
             tiles[move.getColumn()][move.getRow()].setOutlineMovable(this.getGraphicsContext2D());
         }
-    }
 
-    public ArrayList<Location> getPieceLocations() {
-        pieceLocations = new ArrayList<>();
-        for(GamePiece piece : pieces) {
-            pieceLocations.add(piece.getLocation());
-        }
-        return pieceLocations;
     }
 
     public void setActiveTile(Tile tile){
@@ -115,5 +111,9 @@ public class Board extends Canvas {
         for (GamePiece gp : darkPlayer) {
             gp.draw(context);
         }
+    }
+
+    public void nextTurn(){
+        warden.toggleTurn();
     }
 }

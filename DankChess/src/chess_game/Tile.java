@@ -1,15 +1,18 @@
 package chess_game;
 
 import chess_game.colors.DarkColor;
+import chess_game.colors.LightColor;
 import chess_game.gamepieces.GamePiece;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.effect.Light;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import java.util.Observable;
 import java.util.Observer;
 
-public class Tile extends Rectangle implements Drawable, Observer{
+public class Tile extends Rectangle implements Drawable, Observer {
     private Location location;
     public GamePiece piece = null;
     public Board board;
@@ -29,7 +32,7 @@ public class Tile extends Rectangle implements Drawable, Observer{
         setFill(Color.TRANSPARENT);
 
         this.board = board;
-        setOnMouseClicked(t -> {
+        setOnMouseClicked(e -> {
             if(isHighlighted){
                 moveActivePiece(board);
             } else if (piece != null){
@@ -73,14 +76,13 @@ public class Tile extends Rectangle implements Drawable, Observer{
     }
 
     /**
-     * Sets the outline of the tile to specify availble pieces.
+     * Sets the outline of the tile to specify available pieces.
      * @param context the current canvas graphics context.
      */
     public void setOutlineYourPieces(GraphicsContext context) {
-        context.setStroke(Color.RED);
-        clearTile(context);
         draw(context);
         drawOutline(context);
+        isHighlighted = true;
     }
 
     /**
@@ -153,8 +155,23 @@ public class Tile extends Rectangle implements Drawable, Observer{
      */
     @Override
     public void update(Observable o, Object arg) {
-        if(piece.getPieceColor() instanceof DarkColor && arg.equals(true)){
-            this.setOutlineYourPieces(board.getGraphicsContext2D());
+
+        if(piece!=null){
+
+            if(board.warden.playerOneTurn){
+                if(piece.getPieceColor() instanceof DarkColor){
+                    setOutlineMovable(board.getGraphicsContext2D());
+                }else{
+
+                }
+            }else{
+                if(piece.getPieceColor() instanceof LightColor){
+                    setOutlineMovable(board.getGraphicsContext2D());
+                }else{
+
+                }
+            }
+
         }
     }
 }
