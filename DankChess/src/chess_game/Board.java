@@ -28,6 +28,7 @@ public class Board extends Canvas {
                 tiles[i][j] = new Tile(i, j, this);
             }
         }
+
         initializePlayers();
     }
 
