@@ -23,7 +23,7 @@ public class Board extends Canvas {
         tiles = new ArrayList<>();
         for (int i = 0; i < boardSize; i++) {
             for (int j = 0; j < boardSize; j++) {
-                tiles.add(new Tile(i, j));
+                tiles.add(new Tile(j, i));
             }
         }
         initializePlayers();
@@ -35,8 +35,8 @@ public class Board extends Canvas {
         LightPieceFactory lpf = new LightPieceFactory();
         DarkPieceFactory dpf = new DarkPieceFactory();
         for (int i = 0; i < boardSize; i++) {
-            lightPlayer.add(lpf.createPawn(new Location(boardSize - 2, i)));
-            darkPlayer.add(dpf.createPawn(new Location(1, i)));
+            lightPlayer.add(lpf.createPawn(new Location(i, boardSize - 2)));
+            darkPlayer.add(dpf.createPawn(new Location(i, 1)));
         }
     }
 
@@ -59,13 +59,5 @@ public class Board extends Canvas {
         for (GamePiece gp : darkPlayer) {
             gp.draw(context);
         }
-        ArrayList<Location> v = lightPlayer.get(4).getValidMoves();
-        tiles.forEach(tile -> {
-            for (Location l : v) {
-                if (tile.getLocation().equals(l)) {
-                    tile.setOutlineMovable(context);
-                }
-            }
-        });
     }
 }

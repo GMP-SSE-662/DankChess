@@ -11,8 +11,8 @@ public class Tile implements Drawable {
      * @param row of board.
      * @param column of board.
      */
-    public Tile(int row, int column) {
-        location = new Location(row, column);
+    public Tile(int column, int row) {
+        location = new Location(column, row);
     }
 
     /**
@@ -30,7 +30,7 @@ public class Tile implements Drawable {
     @Override
     public void draw(GraphicsContext context) {
         context.setFill(getColor());
-        context.fillRect(location.getRow() * Constants.TILE_SIZE, location.getColumn() * Constants.TILE_SIZE,
+        context.fillRect(location.getColumn() * Constants.TILE_SIZE, location.getRow() * Constants.TILE_SIZE,
                 Constants.TILE_SIZE, Constants.TILE_SIZE);
     }
 
@@ -61,7 +61,7 @@ public class Tile implements Drawable {
      * @param context the current canvas graphics context.
      */
     private void drawOutline(GraphicsContext context) {
-        context.strokeRect(location.getRow() * Constants.TILE_SIZE + 1, location.getColumn() * Constants.TILE_SIZE + 1,
+        context.strokeRect(location.getColumn() * Constants.TILE_SIZE + 1, location.getRow() * Constants.TILE_SIZE + 1,
                 Constants.TILE_SIZE - 2, Constants.TILE_SIZE - 2);
     }
 
@@ -70,7 +70,7 @@ public class Tile implements Drawable {
      * @param context the current canvas graphics context.
      */
     private void clearTile(GraphicsContext context) {
-        context.clearRect(location.getRow() * Constants.TILE_SIZE + 1, location.getColumn() * Constants.TILE_SIZE + 1,
+        context.clearRect(location.getColumn() * Constants.TILE_SIZE + 1, location.getRow() * Constants.TILE_SIZE + 1,
                 Constants.TILE_SIZE - 2, Constants.TILE_SIZE - 2);
     }
 

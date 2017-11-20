@@ -28,8 +28,8 @@ public abstract class GamePiece implements Drawable {
         this.location = location;
     }
 
-    public void setLocation(int row, int column) {
-        location = new Location(row, column);
+    public void setLocation(int column, int row) {
+        location = new Location(column, row);
     }
 
     public abstract ArrayList<Location> getValidMoves();
@@ -37,7 +37,7 @@ public abstract class GamePiece implements Drawable {
     public abstract String getBoardSprite();
 
     public void draw(GraphicsContext gc) {
-        gc.strokeText(getBoardSprite(), getLocation().getRow() * Constants.TILE_SIZE + Constants.TILE_SIZE / 3,
-                (getLocation().getColumn() + 1) * Constants.TILE_SIZE - Constants.TILE_SIZE / 3, Constants.TILE_SIZE / 3);
+        gc.strokeText(getBoardSprite(), getLocation().getColumn() * Constants.TILE_SIZE + Constants.TILE_SIZE / 3,
+                (getLocation().getRow() + 1) * Constants.TILE_SIZE - Constants.TILE_SIZE / 3, Constants.TILE_SIZE / 3);
     }
 }
