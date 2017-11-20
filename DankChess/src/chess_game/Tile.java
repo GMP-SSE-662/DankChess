@@ -144,7 +144,12 @@ public class Tile extends Rectangle implements Observer {
     }
 
     public void moveActivePiece(Board board){
-        board.tiles[this.getLocation().getColumn()][this.getLocation().getRow()].piece = board.getActiveTile().piece;
+        //If this tile already contains a piece
+        if(board.tiles[this.getLocation().getColumn()][this.getLocation().getRow()].piece != null){
+            board.tiles[this.getLocation().getColumn()][this.getLocation().getRow()].piece.setPiece(board.getActiveTile().piece);
+        } else {
+            board.tiles[this.getLocation().getColumn()][this.getLocation().getRow()].piece = board.getActiveTile().piece;
+        }
         board.tiles[this.getLocation().getColumn()][this.getLocation().getRow()].piece.setLocation(this.getLocation());
         board.clearActiveTile();
         this.setOutlineNormal(board.getGraphicsContext2D());
