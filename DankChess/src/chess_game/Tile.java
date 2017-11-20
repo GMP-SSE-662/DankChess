@@ -2,9 +2,7 @@ package chess_game;
 
 import chess_game.colors.DarkColor;
 import chess_game.gamepieces.GamePiece;
-import javafx.event.EventHandler;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 

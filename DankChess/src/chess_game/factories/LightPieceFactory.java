@@ -1,9 +1,9 @@
 package chess_game.factories;
 
 import chess_game.Location;
+import chess_game.colors.LightColor;
 import chess_game.gamepieces.BaseChessPiece;
 import chess_game.gamepieces.GamePiece;
-import chess_game.colors.LightColor;
 import chess_game.gamepieces.movements.*;
 
 public class LightPieceFactory implements ChessPieceFactory {
