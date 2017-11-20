@@ -29,14 +29,14 @@ public class King extends MovementPiece {
     public ArrayList<Location> getValidMoves() {
         ArrayList<Location> validMoves = gamePiece.getValidMoves();
 
-        validMoves.add(new Location(getLocation().getRow() + 1, getLocation().getColumn()));
-        validMoves.add(new Location(getLocation().getRow() - 1, getLocation().getColumn()));
-        validMoves.add(new Location(getLocation().getRow(), getLocation().getColumn() + 1));
-        validMoves.add(new Location(getLocation().getRow(), getLocation().getColumn() - 1));
-        validMoves.add(new Location(getLocation().getRow() + 1, getLocation().getColumn() + 1));
-        validMoves.add(new Location(getLocation().getRow() + 1, getLocation().getColumn() - 1));
-        validMoves.add(new Location(getLocation().getRow() - 1, getLocation().getColumn() + 1));
-        validMoves.add(new Location(getLocation().getRow() - 1, getLocation().getColumn() - 1));
+        validMoves.add(new Location(getLocation().getColumn() + 1, getLocation().getRow()));
+        validMoves.add(new Location(getLocation().getColumn() - 1, getLocation().getRow()));
+        validMoves.add(new Location(getLocation().getColumn(), getLocation().getRow() + 1));
+        validMoves.add(new Location(getLocation().getColumn(), getLocation().getRow() - 1));
+        validMoves.add(new Location(getLocation().getColumn() + 1, getLocation().getRow() + 1));
+        validMoves.add(new Location(getLocation().getColumn() + 1, getLocation().getRow() - 1));
+        validMoves.add(new Location(getLocation().getColumn() - 1, getLocation().getRow() + 1));
+        validMoves.add(new Location(getLocation().getColumn() - 1, getLocation().getRow() - 1));
 
         return validMoves;
     }

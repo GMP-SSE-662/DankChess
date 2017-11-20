@@ -30,10 +30,10 @@ public class Bishop extends MovementPiece {
         ArrayList<Location> validMoves = gamePiece.getValidMoves();
 
         for (int i = 1; i <= 16; i++) {
-            validMoves.add(new Location(getLocation().getRow() + i, getLocation().getColumn() + i));
-            validMoves.add(new Location(getLocation().getRow() + i, getLocation().getColumn() - i));
-            validMoves.add(new Location(getLocation().getRow() - i, getLocation().getColumn() + i));
-            validMoves.add(new Location(getLocation().getRow() - i, getLocation().getColumn() - i));
+            validMoves.add(new Location(getLocation().getColumn() + i, getLocation().getRow() + i));
+            validMoves.add(new Location(getLocation().getColumn() + i, getLocation().getRow() - i));
+            validMoves.add(new Location(getLocation().getColumn() - i, getLocation().getRow() + i));
+            validMoves.add(new Location(getLocation().getColumn() - i, getLocation().getRow() - i));
         }
 
         return validMoves;

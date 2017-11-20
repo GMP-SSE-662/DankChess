@@ -29,14 +29,14 @@ public class Knight extends MovementPiece {
     public ArrayList<Location> getValidMoves() {
         ArrayList<Location> validMoves = gamePiece.getValidMoves();
 
-        validMoves.add(new Location(getLocation().getRow() + 1, getLocation().getColumn() + 2));
-        validMoves.add(new Location(getLocation().getRow() - 1, getLocation().getColumn() + 2));
-        validMoves.add(new Location(getLocation().getRow() + 2, getLocation().getColumn() + 1));
-        validMoves.add(new Location(getLocation().getRow() - 2, getLocation().getColumn() + 1));
-        validMoves.add(new Location(getLocation().getRow() + 1, getLocation().getColumn() - 2));
-        validMoves.add(new Location(getLocation().getRow() - 1, getLocation().getColumn() - 2));
-        validMoves.add(new Location(getLocation().getRow() + 2, getLocation().getColumn() - 1));
-        validMoves.add(new Location(getLocation().getRow() - 2, getLocation().getColumn() - 1));
+        validMoves.add(new Location(getLocation().getColumn() + 1, getLocation().getRow() + 2));
+        validMoves.add(new Location(getLocation().getColumn() - 1, getLocation().getRow() + 2));
+        validMoves.add(new Location(getLocation().getColumn() + 2, getLocation().getRow() + 1));
+        validMoves.add(new Location(getLocation().getColumn() - 2, getLocation().getRow() + 1));
+        validMoves.add(new Location(getLocation().getColumn() + 1, getLocation().getRow() - 2));
+        validMoves.add(new Location(getLocation().getColumn() - 1, getLocation().getRow() - 2));
+        validMoves.add(new Location(getLocation().getColumn() + 2, getLocation().getRow() - 1));
+        validMoves.add(new Location(getLocation().getColumn() - 2, getLocation().getRow() - 1));
 
         return validMoves;
     }
