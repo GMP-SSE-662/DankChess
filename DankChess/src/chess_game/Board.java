@@ -17,9 +17,9 @@ public class Board extends Canvas {
 
     private int boardSize;
 
-    public Board(int desiredBoardSize) {
-        super(desiredBoardSize, desiredBoardSize);
-        boardSize = desiredBoardSize / Constants.TILE_SIZE;
+    public Board() {
+        super(Constants.BOARD_SIZE, Constants.BOARD_SIZE);
+        boardSize = Constants.BOARD_SIZE / Constants.TILE_SIZE;
         tiles = new ArrayList<>();
         for (int i = 0; i < boardSize; i++) {
             for (int j = 0; j < boardSize; j++) {
