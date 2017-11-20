@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class Pawn extends MovementPiece {
 
-    GamePiece gamePiece;
+    private GamePiece gamePiece;
 
     public Pawn(GamePiece gamePiece) {
         this.gamePiece = gamePiece;

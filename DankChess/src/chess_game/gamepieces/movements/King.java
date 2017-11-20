@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class King extends MovementPiece {
 
-    GamePiece gamePiece;
+    private GamePiece gamePiece;
 
     public King(GamePiece gamePiece) {
         this.gamePiece = gamePiece;

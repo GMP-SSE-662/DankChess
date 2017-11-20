@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class Rook extends MovementPiece {
 
-    GamePiece gamePiece;
+    private GamePiece gamePiece;
 
     public Rook(GamePiece gamePiece) {
         this.gamePiece = gamePiece;

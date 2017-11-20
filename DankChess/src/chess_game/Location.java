@@ -32,10 +32,6 @@ public class Location {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Location) {
-            return row == ((Location)obj).getRow() && column == ((Location)obj).getColumn();
-        } else {
-            return false;
-        }
+        return obj instanceof Location && row == ((Location)obj).getRow() && column == ((Location)obj).getColumn();
     }
 }
