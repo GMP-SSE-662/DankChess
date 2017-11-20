@@ -10,15 +10,15 @@ import javafx.scene.canvas.GraphicsContext;
 import java.util.ArrayList;
 
 public abstract class GamePiece implements Drawable {
-    private PieceColor pieceColor;
+    private PieceColor PieceColor;
     private Location location;
 
     public PieceColor getPieceColor() {
-        return pieceColor;
+        return PieceColor;
     }
 
     public void setPieceColor(PieceColor pieceColor) {
-        this.pieceColor = pieceColor;
+        this.PieceColor = pieceColor;
     }
 
     public Location getLocation() {

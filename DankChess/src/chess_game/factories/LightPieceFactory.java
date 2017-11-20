@@ -40,7 +40,7 @@ public class LightPieceFactory implements ChessPieceFactory {
 
     private GamePiece createLightPiece(Location location) {
         GamePiece piece = new BaseChessPiece();
-        piece.setPieceColor(new LightColor());
+        piece.setPieceColor(LightColor.getLightPieceColor());
         piece.setLocation(location);
         return piece;
     }

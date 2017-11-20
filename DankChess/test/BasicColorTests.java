@@ -12,26 +12,26 @@ public class BasicColorTests {
 
     @Test
     public void newDarkColorTest() {
-        testColor = new DarkColor();
+        testColor = DarkColor.getDarkPieceColor();
         assertNotNull(testColor);
     }
 
     @Test
     public void newLightColorTest() {
-        testColor = new LightColor();
+        testColor = LightColor.getLightPieceColor();
         assertNotNull(testColor);
     }
 
     @Test
     public void darkInstanceOfTest() {
-        testColor = new DarkColor();
+        testColor = DarkColor.getDarkPieceColor();
         assertTrue(testColor instanceof PieceColor && testColor instanceof DarkColor);
         assertFalse(testColor instanceof LightColor);
     }
 
     @Test
     public void lightInstanceOfTest() {
-        testColor = new LightColor();
+        testColor = LightColor.getLightPieceColor();
         assertTrue(testColor instanceof PieceColor && testColor instanceof LightColor);
         assertFalse(testColor instanceof DarkColor);
     }

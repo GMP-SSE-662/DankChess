@@ -31,13 +31,9 @@ public class Tile extends Rectangle implements Drawable, Observer{
         setFill(Color.TRANSPARENT);
 
         this.board = board;
-        setOnMouseClicked(new EventHandler<MouseEvent>()
-        {
-            @Override
-            public void handle(MouseEvent t){
-                if(piece != null){
-                    board.highlightMoves(piece.getValidMoves(board));
-                }
+        setOnMouseClicked(t -> {
+            if(piece != null){
+                board.highlightMoves(piece.getValidMoves(board));
             }
         });
     }

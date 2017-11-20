@@ -1,13 +1,14 @@
 package chess_game.colors;
 
 public class LightColor implements PieceColor {
-    @Override
-    public String getColor() {
-        return "light";
+    private static PieceColor instance;
+
+    public static PieceColor getLightPieceColor() {
+        if (instance == null) {
+            instance = new LightColor();
+        }
+        return instance;
     }
 
-    public boolean equals(PieceColor color){
-        if (color.getColor().equals(this.getColor())) return true;
-        else return false;
-    }
+    private LightColor(){}
 }

@@ -40,7 +40,7 @@ public class DarkPieceFactory implements ChessPieceFactory {
 
     private GamePiece createDarkPiece(Location location) {
         GamePiece piece = new BaseChessPiece();
-        piece.setPieceColor(new DarkColor());
+        piece.setPieceColor(DarkColor.getDarkPieceColor());
         piece.setLocation(location);
         return piece;
     }
