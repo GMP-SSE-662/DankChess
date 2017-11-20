@@ -3,7 +3,6 @@ package chess_game;
 import chess_game.colors.DarkColor;
 import chess_game.colors.LightColor;
 import chess_game.gamepieces.GamePiece;
-import javafx.event.EventHandler;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.Light;
 import javafx.scene.input.MouseEvent;
@@ -17,7 +16,7 @@ public class Tile extends Rectangle implements Drawable, Observer{
     private Location location;
     public GamePiece piece = null;
     public Board board;
-    private boolean isHiglighted;
+    private boolean isHighlighted = false;
 
     /**
      * Creates a new tile at the specified location.
@@ -33,13 +32,12 @@ public class Tile extends Rectangle implements Drawable, Observer{
         setFill(Color.TRANSPARENT);
 
         this.board = board;
-        setOnMouseClicked(new EventHandler<MouseEvent>()
-        {
-            @Override
-            public void handle(MouseEvent t){
-                if(piece != null){
-                    board.highlightMoves(piece.getValidMoves(board));
-                }
+        setOnMouseClicked(t -> {
+            if(isHighlighted){
+                moveActivePiece(board);
+            } else if (piece != null){
+                board.highlightMoves(piece.getValidMoves(board));
+                makeActiveTile(board);
             }
         });
     }
@@ -61,6 +59,7 @@ public class Tile extends Rectangle implements Drawable, Observer{
         context.setFill(getColor());
         context.fillRect(location.getColumn() * Constants.TILE_SIZE, location.getRow() * Constants.TILE_SIZE,
                 Constants.TILE_SIZE, Constants.TILE_SIZE);
+        context.setStroke(Color.BLACK);
         if(piece != null) piece.draw(context);
     }
 
@@ -69,11 +68,11 @@ public class Tile extends Rectangle implements Drawable, Observer{
      * @param context the current canvas graphics context.
      */
     public void setOutlineMovable(GraphicsContext context) {
-        context.setStroke(Color.DARKBLUE);
         clearTile(context);
         draw(context);
+        context.setStroke(Color.DARKBLUE);
         drawOutline(context);
-        isHiglighted = true;
+        isHighlighted = true;
     }
 
     /**
@@ -91,11 +90,11 @@ public class Tile extends Rectangle implements Drawable, Observer{
      * @param context the current canvas graphics context.
      */
     public void setOutlineNormal(GraphicsContext context) {
-        context.setStroke(getColor());
         clearTile(context);
         draw(context);
+        context.setStroke(getColor());
         drawOutline(context);
-        isHiglighted = false;
+        isHighlighted = false;
     }
 
     /**
@@ -107,8 +106,8 @@ public class Tile extends Rectangle implements Drawable, Observer{
                 Constants.TILE_SIZE - 2, Constants.TILE_SIZE - 2);
     }
 
-    public boolean isHiglighted(){
-        return isHiglighted;
+    public boolean isHighlighted(){
+        return isHighlighted;
     }
 
     /**
@@ -138,6 +137,16 @@ public class Tile extends Rectangle implements Drawable, Observer{
                 return Color.WHITESMOKE;
             }
         }
+    }
+
+    public void makeActiveTile(Board board){
+        board.setActiveTile(this);
+    }
+
+    public void moveActivePiece(Board board){
+        this.piece = board.getActiveTile().piece;
+        board.clearActiveTile();
+        this.setOutlineNormal(board.getGraphicsContext2D());
     }
 
     /**
