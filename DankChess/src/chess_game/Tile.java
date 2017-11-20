@@ -58,7 +58,7 @@ public class Tile extends Rectangle implements Observer {
         context.fillRect(location.getColumn() * Constants.TILE_SIZE, location.getRow() * Constants.TILE_SIZE,
                 Constants.TILE_SIZE, Constants.TILE_SIZE);
         context.setStroke(Color.BLACK);
-        if(piece != null) piece.draw(context, piece.getBoardSprite());
+        if (piece != null) piece.draw(context);
     }
 
     /**

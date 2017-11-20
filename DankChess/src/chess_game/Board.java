@@ -28,7 +28,6 @@ public class Board extends Canvas {
             }
         }
         initializePlayers();
-        turn.toggleTurn();
     }
 
     private void initializePlayers() {
@@ -102,10 +101,10 @@ public class Board extends Canvas {
             }
         }
         for (GamePiece gp : lightPlayer) {
-            gp.draw(context, gp.getBoardSprite());
+            gp.draw(context);
         }
         for (GamePiece gp : darkPlayer) {
-            gp.draw(context, gp.getBoardSprite());
+            gp.draw(context);
         }
     }
 }

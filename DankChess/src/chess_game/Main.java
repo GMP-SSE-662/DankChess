@@ -15,6 +15,7 @@ public class Main extends Application {
 
         Board mainBoard = new Board();
         mainBoard.draw();
+        mainBoard.turn.toggleTurn();
         root.getChildren().add(mainBoard);
         for(int i = 0; i < Constants.TILES_PER_SIDE; i++){
             for(int j = 0; j < Constants.TILES_PER_SIDE; j++){
